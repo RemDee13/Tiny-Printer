@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Четыре режима Tiny Printer</title>
+  <desc id="desc">Открытки (⌘1), Надписи (⌘2), QR-коды (⌘3) и Фото (⌘4) — режимы в боковой панели приложения.</desc>
+  <defs>
+    <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF7F4"/><stop offset="1" stop-color="#F1EAE7"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.4" fill="#735259" fill-opacity="0.14"/></pattern>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1200" height="300" rx="28" fill="url(#desk)"/>
+  <rect width="1200" height="300" rx="28" fill="url(#dots)"/>
+  <g transform="translate(36 34)">
+    <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
+    <defs><linearGradient id="t0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A8A"/><stop offset="1" stop-color="#F2609A"/></linearGradient></defs>
+    <g transform="translate(24 24)">
+      <rect width="64" height="64" rx="17" fill="url(#t0)"/>
+        <rect x="17" y="29" width="30" height="21" rx="3" fill="#fff"/>
+        <rect x="14" y="22" width="36" height="10" rx="3" fill="#fff"/>
+        <rect x="30" y="22" width="4" height="28" fill="#F2609A"/>
+        <path d="M32 22c-3-8-12-9-12-3 0 3 5 3 12 3zm0 0c3-8 12-9 12-3 0 3-5 3-12 3z" fill="#fff"/>
+    </g>
+    <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
+    <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘1</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Открытки</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Записки, открытки,</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">стикеры и AI-картинки</text>
+  </g>
+  <g transform="translate(322 34)">
+    <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
+    <defs><linearGradient id="t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB547"/><stop offset="1" stop-color="#FF8C00"/></linearGradient></defs>
+    <g transform="translate(24 24)">
+      <rect width="64" height="64" rx="17" fill="url(#t1)"/>
+        <text x="32" y="43" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">Aa</text>
+    </g>
+    <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
+    <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘2</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Надписи</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Любой шрифт, длинные</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">наклейки вдоль ленты</text>
+  </g>
+  <g transform="translate(608 34)">
+    <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
+    <defs><linearGradient id="t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B88FF"/><stop offset="1" stop-color="#5856D6"/></linearGradient></defs>
+    <g transform="translate(24 24)">
+      <rect width="64" height="64" rx="17" fill="url(#t2)"/>
+        <rect x="16.5" y="16.5" width="9" height="9" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
+        <rect x="19.5" y="19.5" width="3" height="3" fill="#fff"/>
+        <rect x="38.5" y="16.5" width="9" height="9" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
+        <rect x="41.5" y="19.5" width="3" height="3" fill="#fff"/>
+        <rect x="16.5" y="38.5" width="9" height="9" rx="2" fill="none" stroke="#fff" stroke-width="3"/>
+        <rect x="19.5" y="41.5" width="3" height="3" fill="#fff"/>
+        <rect x="38" y="38" width="4" height="4" rx="1" fill="#fff"/>
+        <rect x="44" y="38" width="4" height="4" rx="1" fill="#fff"/>
+        <rect x="38" y="44" width="4" height="4" rx="1" fill="#fff"/>
+        <rect x="44" y="46" width="4" height="4" rx="1" fill="#fff"/>
+        <rect x="46" y="42" width="4" height="4" rx="1" fill="#fff"/>
+    </g>
+    <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
+    <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘3</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">QR-коды</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Ссылка, текст или</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">Wi‑Fi — с подписью</text>
+  </g>
+  <g transform="translate(894 34)">
+    <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
+    <defs><linearGradient id="t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#62D2E3"/><stop offset="1" stop-color="#1FA2BA"/></linearGradient></defs>
+    <g transform="translate(24 24)">
+      <rect width="64" height="64" rx="17" fill="url(#t3)"/>
+        <rect x="14.5" y="18.5" width="35" height="27" rx="5" fill="none" stroke="#fff" stroke-width="3"/>
+        <circle cx="25" cy="27" r="3.5" fill="#fff"/>
+        <path d="M17 43l9-9 6 6 5-5 10 9z" fill="#fff"/>
+    </g>
+    <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
+    <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘4</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Фото</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Ч/б фото точками:</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">Аткинсон, Флойд, Байер</text>
+  </g>
+  </g>
+</svg>
