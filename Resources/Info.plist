@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>CFBundleDevelopmentRegion</key><string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>en</string>
+        <string>ru</string>
+        <string>de</string>
+        <string>es</string>
+        <string>fr</string>
+        <string>zh-Hans</string>
+    </array>
     <key>CFBundleIdentifier</key><string>dev.tinyprinter.TinyPrinter</string>
     <key>CFBundleName</key><string>Tiny Printer</string>
     <key>CFBundleDisplayName</key><string>Tiny Printer</string>
@@ -14,7 +24,7 @@
     <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
     <key>NSHighResolutionCapable</key><true/>
     <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>Tiny Printer подключается к термопринтеру по Bluetooth, чтобы печатать наклейки.</string>
+    <string>Tiny Printer connects to your thermal printer over Bluetooth to print stickers.</string>
     <key>CFBundleDocumentTypes</key>
     <array>
         <dict>

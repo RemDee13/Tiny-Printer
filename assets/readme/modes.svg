@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
-  <title id="title">Четыре режима Tiny Printer</title>
-  <desc id="desc">Открытки (⌘1), Надписи (⌘2), QR-коды (⌘3) и Фото (⌘4) — режимы в боковой панели приложения.</desc>
+  <title id="title">Four modes of Tiny Printer</title>
+  <desc id="desc">Cards (⌘1), Labels (⌘2), QR Codes (⌘3) and Photo (⌘4) — the modes in the app sidebar.</desc>
   <defs>
     <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF7F4"/><stop offset="1" stop-color="#F1EAE7"/></linearGradient>
     <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1.4" fill="#735259" fill-opacity="0.14"/></pattern>
@@ -20,9 +20,9 @@
     </g>
     <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
     <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘1</text>
-    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Открытки</text>
-    <text x="24" y="170" font-size="18" fill="#6A5D62">Записки, открытки,</text>
-    <text x="24" y="196" font-size="18" fill="#6A5D62">стикеры и AI-картинки</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Cards</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Notes, cards, stickers</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">and AI pictures</text>
   </g>
   <g transform="translate(322 34)">
     <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
@@ -33,9 +33,9 @@
     </g>
     <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
     <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘2</text>
-    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Надписи</text>
-    <text x="24" y="170" font-size="18" fill="#6A5D62">Любой шрифт, длинные</text>
-    <text x="24" y="196" font-size="18" fill="#6A5D62">наклейки вдоль ленты</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Labels</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">Any font, long stickers</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">along the tape</text>
   </g>
   <g transform="translate(608 34)">
     <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
@@ -56,9 +56,9 @@
     </g>
     <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
     <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘3</text>
-    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">QR-коды</text>
-    <text x="24" y="170" font-size="18" fill="#6A5D62">Ссылка, текст или</text>
-    <text x="24" y="196" font-size="18" fill="#6A5D62">Wi‑Fi — с подписью</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">QR Codes</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">A link, text or Wi‑Fi,</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">with a caption</text>
   </g>
   <g transform="translate(894 34)">
     <rect width="270" height="232" rx="22" fill="#FFFFFF" stroke="#EADBD7"/>
@@ -71,9 +71,9 @@
     </g>
     <rect x="196" y="28" width="50" height="28" rx="14" fill="#F6EFEC"/>
     <text x="221" y="48" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8A7A80">⌘4</text>
-    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Фото</text>
-    <text x="24" y="170" font-size="18" fill="#6A5D62">Ч/б фото точками:</text>
-    <text x="24" y="196" font-size="18" fill="#6A5D62">Аткинсон, Флойд, Байер</text>
+    <text x="24" y="134" font-size="27" font-weight="700" fill="#231C1F">Photo</text>
+    <text x="24" y="170" font-size="18" fill="#6A5D62">B&amp;W photos in dots:</text>
+    <text x="24" y="196" font-size="18" fill="#6A5D62">Atkinson, Floyd, Bayer</text>
   </g>
   </g>
 </svg>

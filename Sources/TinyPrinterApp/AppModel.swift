@@ -9,18 +9,18 @@ enum EditorTab: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .cards: return "Открытки"
-        case .text: return "Надписи"
-        case .qr: return "QR-коды"
-        case .photo: return "Фото"
+        case .cards: return String(localized: "Открытки")
+        case .text: return String(localized: "Надписи")
+        case .qr: return String(localized: "QR-коды")
+        case .photo: return String(localized: "Фото")
         }
     }
     var subtitle: String {
         switch self {
-        case .cards: return "Записки, открытки и стикеры"
-        case .text: return "Этикетки и длинные наклейки"
-        case .qr: return "Ссылки, Wi‑Fi, контакты"
-        case .photo: return "Ч/б фото на ленте"
+        case .cards: return String(localized: "Записки, открытки и стикеры")
+        case .text: return String(localized: "Этикетки и длинные наклейки")
+        case .qr: return String(localized: "Ссылки, Wi‑Fi, контакты")
+        case .photo: return String(localized: "Ч/б фото на ленте")
         }
     }
     var icon: String {
@@ -39,7 +39,7 @@ enum EditorTab: String, CaseIterable, Identifiable {
 enum OutputMode: String, CaseIterable, Identifiable, Codable {
     case bluetooth, virtual
     var id: String { rawValue }
-    var title: String { self == .bluetooth ? "Bluetooth-принтер" : "Виртуальный (PNG в папку)" }
+    var title: String { self == .bluetooth ? String(localized: "Bluetooth-принтер") : String(localized: "Виртуальный (PNG в папку)") }
 }
 
 struct AIHistoryItem: Identifiable {
@@ -60,8 +60,8 @@ struct AICostRecord: Codable {
 
     var costText: String {
         if let usd { return "≈ " + AIPricing.format(usd) }
-        if let usage { return "\(usage.totalTokens) ток., цена модели неизвестна" }
-        return "сервис не сообщил расход"
+        if let usage { return String(localized: "\(usage.totalTokens) ток., цена модели неизвестна") }
+        return String(localized: "сервис не сообщил расход")
     }
 }
 
@@ -110,7 +110,7 @@ final class AppModel: ObservableObject {
     @Published var preview: MonoBitmap?
     @Published var copies = 1
     @Published var busy = false
-    @Published var toast: String?
+    @Published var toast: Toast?
     @Published var history: [JobRecord] = []
     @Published var serverError: String?
     @Published var systemPrinterInstalled = false
@@ -130,7 +130,7 @@ final class AppModel: ObservableObject {
         aiPrompt = defaults.string(forKey: "ai.prompt") ?? CardPreset.all.first { $0.id == "birthday" }?.prompt ?? ""
         if let img = ImageLoader.load(url: Self.cardImageURL) {
             cardImage = img
-            cardImageName = defaults.string(forKey: "card.imageName") ?? "Картинка"
+            cardImageName = defaults.string(forKey: "card.imageName") ?? String(localized: "Картинка")
         }
         refreshKeyMasks()
         loadLedger()
@@ -157,7 +157,7 @@ final class AppModel: ObservableObject {
             return await self.handle(req)
         }
         do { try server.start(); self.server = server } catch {
-            serverError = "Локальный API (порт \(SystemPrinter.apiPort)) не запустился: \(error.localizedDescription)"
+            serverError = String(localized: "Локальный API (порт \(SystemPrinter.apiPort)) не запустился: \(error.localizedDescription)")
         }
         system.onLog = { [weak self] line in
             DispatchQueue.main.async { self?.printer.note(line) }
@@ -193,7 +193,7 @@ final class AppModel: ObservableObject {
 
     func printCurrent() {
         guard let bm = renderCurrent(), bm.height > 0, bm.blackRatio > 0 else {
-            show("Нечего печатать")
+            show(String(localized: "Нечего печатать"), error: true)
             return
         }
         let source = tab.title
@@ -206,11 +206,11 @@ final class AppModel: ObservableObject {
         do {
             try await printBitmap(bm, copies: copies, settings: override)
             history.insert(JobRecord(source: source, lengthMM: Units.mm(dots: bm.height) * Double(copies), ok: true, message: "OK"), at: 0)
-            show("Напечатано: \(source), \(Int(Units.mm(dots: bm.height))) мм")
+            show(String(localized: "Напечатано: \(source), \(Int(Units.mm(dots: bm.height))) мм"))
             return true
         } catch {
             history.insert(JobRecord(source: source, lengthMM: 0, ok: false, message: error.localizedDescription), at: 0)
-            show(error.localizedDescription)
+            show(error.localizedDescription, error: true)
             return false
         }
     }
@@ -242,12 +242,18 @@ final class AppModel: ObservableObject {
         let url = Self.virtualDir.appendingPathComponent("\(f.string(from: Date())) x\(copies).png")
         guard let data = bm.pngData() else { throw PrinterError.write("PNG") }
         try data.write(to: url)
-        printer.note("Виртуальный принтер: \(url.lastPathComponent)")
+        printer.note(String(localized: "Виртуальный принтер: \(url.lastPathComponent)"))
     }
 
-    func show(_ message: String) {
-        toast = message
-        let current = message
+    struct Toast: Equatable {
+        let text: String
+        let isError: Bool
+        let id = UUID()
+    }
+
+    func show(_ message: String, error: Bool = false) {
+        let current = Toast(text: message, isError: error)
+        toast = current
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
             if self?.toast == current { self?.toast = nil }
         }
@@ -255,29 +261,29 @@ final class AppModel: ObservableObject {
 
     func connectPrinter() {
         Task {
-            do { try await printer.connect() } catch { show(error.localizedDescription) }
+            do { try await printer.connect() } catch { show(error.localizedDescription, error: true) }
         }
     }
 
     /// Short status for the toolbar, the sidebar card and the menu bar.
     var printerTitle: String {
-        if output == .virtual { return "Без принтера" }
+        if output == .virtual { return String(localized: "Без принтера") }
         switch printer.state {
-        case .idle: return printer.rememberedID == nil ? "Принтер не выбран" : "Не подключён"
-        case .scanning: return "Поиск…"
-        case .connecting(let n): return "Подключение к \(n)…"
-        case .connected: return printer.deviceName ?? "Подключён"
-        case .printing(let p): return "Печать \(Int(p * 100))%"
-        case .error: return "Ошибка"
+        case .idle: return printer.rememberedID == nil ? String(localized: "Принтер не выбран") : String(localized: "Не подключён")
+        case .scanning: return String(localized: "Поиск…")
+        case .connecting(let n): return String(localized: "Подключение к \(n)…")
+        case .connected: return printer.deviceName ?? String(localized: "Подключён")
+        case .printing(let p): return String(localized: "Печать \(Int(p * 100))%")
+        case .error: return String(localized: "Ошибка")
         }
     }
 
     var printerDetail: String? {
-        if output == .virtual { return "Сохраняю PNG в папку" }
+        if output == .virtual { return String(localized: "Сохраняю PNG в папку") }
         if case .error(let e) = printer.state { return e }
         if !printer.status.problems.isEmpty { return printer.status.problems.joined(separator: " · ") }
         if printer.isConnected { return printer.driverName }
-        return printer.rememberedID == nil ? "Включите принтер и нажмите «Подключить»" : "Подключится сам при печати"
+        return printer.rememberedID == nil ? String(localized: "Включите принтер и нажмите «Подключить»") : String(localized: "Подключится сам при печати")
     }
 
     enum PrinterTone { case ok, busy, problem, off, virtual }
@@ -298,13 +304,13 @@ final class AppModel: ObservableObject {
         let ruler = MonoBitmap.cutLine(width: widthDots, dash: 2, gap: 2, thickness: 2)
         var q = QRLabel(); q.content = "https://github.com"; q.qrSizeMM = 18; q.caption = "QR test"
         let bm = MonoBitmap.vstack([t.render(width: widthDots), ruler, q.render(width: widthDots)])
-        Task { await printReporting(bm, source: "Тестовая печать") }
+        Task { await printReporting(bm, source: String(localized: "Тестовая печать")) }
     }
 
     // MARK: - Files, clipboard
 
     func loadPhoto(url: URL) {
-        guard let img = ImageLoader.load(url: url) else { show("Не удалось открыть \(url.lastPathComponent)"); return }
+        guard let img = ImageLoader.load(url: url) else { show(String(localized: "Не удалось открыть \(url.lastPathComponent)"), error: true); return }
         photoImage = img
         photoName = url.lastPathComponent
         tab = .photo
@@ -329,17 +335,17 @@ final class AppModel: ObservableObject {
         let pb = NSPasteboard.general
         if let img = NSImage(pasteboard: pb), let cg = img.cgImage(forProposedRect: nil, context: nil, hints: nil) {
             let bm = DocumentRenderer.renderImage(cg, width: widthDots, options: docOptions)
-            Task { await printReporting(bm, source: "Буфер: картинка") }
+            Task { await printReporting(bm, source: String(localized: "Буфер: картинка")) }
         } else if let s = pb.string(forType: .string)?.trimmingCharacters(in: .whitespacesAndNewlines), !s.isEmpty {
             if let url = URL(string: s), url.scheme?.hasPrefix("http") == true, !s.contains(" ") {
                 var q = QRLabel(); q.content = s; q.caption = url.host ?? ""; q.captionSizePt = 10
-                Task { await printReporting(q.render(width: widthDots), source: "Буфер: QR") }
+                Task { await printReporting(q.render(width: widthDots), source: String(localized: "Буфер: QR")) }
             } else {
                 var t = TextLabel(); t.text = s; t.sizePt = 14; t.align = .left; t.bold = false
-                Task { await printReporting(t.render(width: widthDots), source: "Буфер: текст") }
+                Task { await printReporting(t.render(width: widthDots), source: String(localized: "Буфер: текст")) }
             }
         } else {
-            show("В буфере нет текста или картинки")
+            show(String(localized: "В буфере нет текста или картинки"), error: true)
         }
     }
 
@@ -370,7 +376,7 @@ final class AppModel: ObservableObject {
     }
 
     func loadCardImage(url: URL) {
-        guard let img = ImageLoader.load(url: url) else { show("Не удалось открыть \(url.lastPathComponent)"); return }
+        guard let img = ImageLoader.load(url: url) else { show(String(localized: "Не удалось открыть \(url.lastPathComponent)"), error: true); return }
         setCardImage(img, name: url.lastPathComponent)
         tab = .cards
     }
@@ -415,7 +421,7 @@ final class AppModel: ObservableObject {
 
     /// Loads the image models available to the key; doubles as a key check.
     func refreshModels(_ p: AIProvider) async -> (ok: Bool, message: String) {
-        guard let client = client(p) else { return (false, "Сначала сохраните ключ.") }
+        guard let client = client(p) else { return (false, String(localized: "Сначала сохраните ключ.")) }
         do {
             let list = try await client.listModels()
             aiModels[p] = list.isEmpty ? nil : list
@@ -424,9 +430,9 @@ final class AppModel: ObservableObject {
                 // The remembered model is gone (renamed or retired): take the closest known one.
                 let pick = p.knownModels.first(where: list.contains) ?? list[0]
                 if p == .openAI { ai.openAIModel = pick } else { ai.googleModel = pick }
-                return (true, "Ключ работает. Модели \(current) нет, выбрана \(pick).")
+                return (true, String(localized: "Ключ работает. Модели \(current) нет, выбрана \(pick)."))
             }
-            return (true, list.isEmpty ? "Ключ работает, но моделей для картинок не найдено." : "Ключ работает. Моделей для картинок: \(list.count).")
+            return (true, list.isEmpty ? String(localized: "Ключ работает, но моделей для картинок не найдено.") : String(localized: "Ключ работает. Моделей для картинок: \(list.count)."))
         } catch {
             return (false, error.localizedDescription)
         }
@@ -445,14 +451,14 @@ final class AppModel: ObservableObject {
             do {
                 let result = try await client.generate(prompt: prompt, reference: reference)
                 let title = idea.trimmingCharacters(in: .whitespacesAndNewlines)
-                let file = saveAIImage(result.data, title: title.isEmpty ? "картинка" : title)
+                let file = saveAIImage(result.data, title: title.isEmpty ? String(localized: "картинка") : title)
                 let record = AICostRecord(date: Date(), file: file?.lastPathComponent ?? "", provider: p,
                                           model: result.model, usage: result.usage, usd: result.cost)
                 aiLedger.append(record)
                 saveLedger()
-                setCardImage(result.image, name: "AI: " + (title.isEmpty ? "перерисовка" : String(title.prefix(40))))
+                setCardImage(result.image, name: "AI: " + (title.isEmpty ? String(localized: "перерисовка") : String(title.prefix(40))))
                 loadAIHistory()
-                show("Картинка готова · " + record.costText)
+                show(String(localized: "Картинка готова · ") + record.costText)
             } catch {
                 aiError = error.localizedDescription
             }
@@ -494,8 +500,8 @@ final class AppModel: ObservableObject {
     /// "Последняя ≈ $0.025 · всего ≈ $0.075 за 3 шт."
     var aiSpendLine: String? {
         guard let last = aiLedger.last else { return nil }
-        let total = aiLedger.count > 1 ? " · всего ≈ \(AIPricing.format(aiSpent)) за \(aiLedger.count) шт." : ""
-        return "Последняя: \(last.costText)" + total
+        let total = aiLedger.count > 1 ? String(localized: " · всего ≈ \(AIPricing.format(aiSpent)) за \(aiLedger.count) шт.") : ""
+        return String(localized: "Последняя: \(last.costText)") + total
     }
 
     func resetLedger() {
@@ -530,7 +536,7 @@ final class AppModel: ObservableObject {
     func setLaunchAtLogin(_ on: Bool) {
         do {
             if on { try SMAppService.mainApp.register() } else { try SMAppService.mainApp.unregister() }
-        } catch { show("Автозапуск: \(error.localizedDescription)") }
+        } catch { show(String(localized: "Автозапуск: \(error.localizedDescription)"), error: true) }
         launchAtLogin = SMAppService.mainApp.status == .enabled
     }
 
@@ -557,7 +563,7 @@ final class AppModel: ObservableObject {
             if let t = req.bool("trim") { opts.trimBottom = t }
             let pages = DocumentRenderer.render(fileData: req.body, contentType: req.headers["content-type"],
                                                 width: widthDots, options: opts)
-            guard !pages.isEmpty else { return .error("не удалось разобрать документ (нужен PDF или картинка)") }
+            guard !pages.isEmpty else { return .error(String(localized: "не удалось разобрать документ (нужен PDF или картинка)")) }
             var s = settings
             if let d = req.int("density") { s.density = d }
             switch req.query["quality"] {   // "Quality" in the macOS print dialog maps to darkness
@@ -570,7 +576,7 @@ final class AppModel: ObservableObject {
             if req.bool("preview") == true {
                 return png(MonoBitmap.vstack(pages, spacing: 0))
             }
-            let source = req.query["source"] == "ipp" ? "Системная печать" : "API: документ"
+            let source = req.query["source"] == "ipp" ? String(localized: "Системная печать") : String(localized: "API: документ")
             for page in pages {
                 do { try await printBitmap(page, copies: copies, settings: s) } catch {
                     history.insert(JobRecord(source: source, lengthMM: 0, ok: false, message: error.localizedDescription), at: 0)
@@ -583,7 +589,7 @@ final class AppModel: ObservableObject {
 
         case ("POST", "/print/raw"):
             // A ready 1-bit PNG at head width (the CLI renders locally).
-            guard let img = ImageLoader.load(data: req.body, maxPixelSize: 100_000) else { return .error("нужен PNG") }
+            guard let img = ImageLoader.load(data: req.body, maxPixelSize: 100_000) else { return .error(String(localized: "нужен PNG")) }
             let bm = GrayImage(cgImage: img, width: img.width, height: img.height).threshold().fitted(toWidth: widthDots)
             var s = settings
             if let d = req.int("density") { s.density = d }

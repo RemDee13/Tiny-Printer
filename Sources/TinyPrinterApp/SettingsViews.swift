@@ -105,7 +105,7 @@ struct PrinterSettingsPane: View {
                         Text("\(c.rssi) dBm").font(.caption).foregroundStyle(.secondary)
                         Spacer()
                         Button("Подключить") {
-                            Task { do { try await printer.connect(id: c.id) } catch { model.show(error.localizedDescription) } }
+                            Task { do { try await printer.connect(id: c.id) } catch { model.show(error.localizedDescription, error: true) } }
                         }
                         .disabled(printer.state.isBusy)
                     }
@@ -173,7 +173,7 @@ struct PrintingSettingsPane: View {
                     ForEach(1...5, id: \.self) { Text("\($0)").tag($0) }
                 }
                 .pickerStyle(.segmented)
-                MMField(title: "Прогон после печати", value: $model.settings.feedAfterMM, range: 0...40, zeroMeansAuto: false)
+                MMField(title: String(localized: "Прогон после печати"), value: $model.settings.feedAfterMM, range: 0...40, zeroMeansAuto: false)
             } header: {
                 Text("Бумага")
             } footer: {
@@ -183,22 +183,22 @@ struct PrintingSettingsPane: View {
 
             Section {
                 integrationRow(
-                    title: "Принтер «Tiny Printer» в системе",
+                    title: String(localized: "Принтер «Tiny Printer» в системе"),
                     detail: model.systemPrinterInstalled
-                        ? "Выбирайте его в ⌘P любого приложения. Размеры бумаги: 57×20…150 мм и свой."
-                        : "Добавит принтер в список macOS (без пароля, только для этого Mac).",
+                        ? String(localized: "Выбирайте его в ⌘P любого приложения. Размеры бумаги: 57×20…150 мм и свой.")
+                        : String(localized: "Добавит принтер в список macOS (без пароля, только для этого Mac)."),
                     installed: model.systemPrinterInstalled,
                     install: {
-                        if let err = model.system.install() { model.show("Не удалось: \(err)") }
+                        if let err = model.system.install() { model.show(String(localized: "Не удалось: \(err)"), error: true) }
                         model.refreshIntegrationState()
                     },
                     remove: { model.system.uninstall(); model.refreshIntegrationState() })
                 integrationRow(
-                    title: "Пункт в меню «PDF» диалога печати",
-                    detail: "Запасной путь: ⌘P → PDF → «Печать на Tiny Printer».",
+                    title: String(localized: "Пункт в меню «PDF» диалога печати"),
+                    detail: String(localized: "Запасной путь: ⌘P → PDF → «Печать на Tiny Printer»."),
                     installed: model.pdfServiceInstalled,
                     install: {
-                        do { try model.system.installPDFService() } catch { model.show(error.localizedDescription) }
+                        do { try model.system.installPDFService() } catch { model.show(error.localizedDescription, error: true) }
                         model.refreshIntegrationState()
                     },
                     remove: { model.system.uninstallPDFService(); model.refreshIntegrationState() })
@@ -313,7 +313,7 @@ struct LogPane: View {
                             .foregroundStyle(j.ok ? .green : .red)
                         Text(j.source)
                         Spacer()
-                        Text(j.ok ? "\(Int(j.lengthMM)) мм" : j.message)
+                        Text(j.ok ? String(localized: "\(Int(j.lengthMM)) мм") : j.message)
                             .font(.caption).foregroundStyle(.secondary).lineLimit(1)
                         Text(j.date.formatted(date: .omitted, time: .shortened))
                             .font(.caption).monospacedDigit().foregroundStyle(.secondary)
@@ -323,7 +323,7 @@ struct LogPane: View {
 
             Section {
                 ScrollView {
-                    Text(printer.log.suffix(300).joined(separator: "\n").nilIfEmpty ?? "Журнал пуст.")
+                    Text(printer.log.suffix(300).joined(separator: "\n").nilIfEmpty ?? String(localized: "Журнал пуст."))
                         .font(.system(.caption, design: .monospaced))
                         .textSelection(.enabled)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -337,7 +337,7 @@ struct LogPane: View {
                         NSPasteboard.general.clearContents()
                         NSPasteboard.general.setString(printer.log.joined(separator: "\n") + "\n\n" + printer.gattDescription,
                                                        forType: .string)
-                        model.show("Журнал скопирован")
+                        model.show(String(localized: "Журнал скопирован"))
                     }
                     .controlSize(.small)
                 }

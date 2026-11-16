@@ -11,7 +11,7 @@ public enum CardKind: String, Codable, CaseIterable, Identifiable {
     case note, postcard, sticker
     public var id: String { rawValue }
     public var title: String {
-        switch self { case .note: return "Записка"; case .postcard: return "Открытка"; case .sticker: return "Стикер" }
+        switch self { case .note: return String(localized: "Записка", bundle: .tinyPrinter); case .postcard: return String(localized: "Открытка", bundle: .tinyPrinter); case .sticker: return String(localized: "Стикер", bundle: .tinyPrinter) }
     }
     public var icon: String {
         switch self { case .note: return "note.text"; case .postcard: return "envelope.open"; case .sticker: return "seal" }
@@ -23,19 +23,19 @@ public enum CardFrame: String, Codable, CaseIterable, Identifiable {
     public var id: String { rawValue }
     public var title: String {
         switch self {
-        case .none: return "Без рамки"
-        case .line: return "Линия"
-        case .double: return "Двойная"
-        case .rounded: return "Скруглённая"
-        case .dashed: return "Пунктир (линия отреза)"
-        case .dotted: return "Точки"
-        case .scallop: return "Волна"
-        case .zigzag: return "Зубчики (марка)"
-        case .ticket: return "Билетик"
-        case .corners: return "Уголки"
-        case .hearts: return "Сердечки"
-        case .stars: return "Звёздочки"
-        case .snowflakes: return "Снежинки"
+        case .none: return String(localized: "Без рамки", bundle: .tinyPrinter)
+        case .line: return String(localized: "Линия", bundle: .tinyPrinter)
+        case .double: return String(localized: "Двойная", bundle: .tinyPrinter)
+        case .rounded: return String(localized: "Скруглённая", bundle: .tinyPrinter)
+        case .dashed: return String(localized: "Пунктир (линия отреза)", bundle: .tinyPrinter)
+        case .dotted: return String(localized: "Точки", bundle: .tinyPrinter)
+        case .scallop: return String(localized: "Волна", bundle: .tinyPrinter)
+        case .zigzag: return String(localized: "Зубчики (марка)", bundle: .tinyPrinter)
+        case .ticket: return String(localized: "Билетик", bundle: .tinyPrinter)
+        case .corners: return String(localized: "Уголки", bundle: .tinyPrinter)
+        case .hearts: return String(localized: "Сердечки", bundle: .tinyPrinter)
+        case .stars: return String(localized: "Звёздочки", bundle: .tinyPrinter)
+        case .snowflakes: return String(localized: "Снежинки", bundle: .tinyPrinter)
         }
     }
     /// Dots the frame takes from each edge.
@@ -56,14 +56,14 @@ public enum CardOrnament: String, Codable, CaseIterable, Identifiable {
     public var id: String { rawValue }
     public var title: String {
         switch self {
-        case .none: return "Нет"
-        case .hearts: return "Сердечки"
-        case .stars: return "Звёзды"
-        case .sparkles: return "Искорки"
-        case .flowers: return "Цветочки"
-        case .snowflakes: return "Снежинки"
-        case .divider: return "Линия с ромбом"
-        case .dots: return "Точки"
+        case .none: return String(localized: "Нет", bundle: .tinyPrinter)
+        case .hearts: return String(localized: "Сердечки", bundle: .tinyPrinter)
+        case .stars: return String(localized: "Звёзды", bundle: .tinyPrinter)
+        case .sparkles: return String(localized: "Искорки", bundle: .tinyPrinter)
+        case .flowers: return String(localized: "Цветочки", bundle: .tinyPrinter)
+        case .snowflakes: return String(localized: "Снежинки", bundle: .tinyPrinter)
+        case .divider: return String(localized: "Линия с ромбом", bundle: .tinyPrinter)
+        case .dots: return String(localized: "Точки", bundle: .tinyPrinter)
         }
     }
 }
@@ -73,9 +73,9 @@ public enum CardTitleStyle: String, Codable, CaseIterable, Identifiable {
     public var id: String { rawValue }
     public var title: String {
         switch self {
-        case .plain: return "Обычный"
-        case .banner: return "Лента (белым по чёрному)"
-        case .underline: return "С росчерком снизу"
+        case .plain: return String(localized: "Обычный", bundle: .tinyPrinter)
+        case .banner: return String(localized: "Лента (белым по чёрному)", bundle: .tinyPrinter)
+        case .underline: return String(localized: "С росчерком снизу", bundle: .tinyPrinter)
         }
     }
 }
@@ -84,31 +84,31 @@ public enum CardImagePlacement: String, Codable, CaseIterable, Identifiable {
     case top, afterTitle, bottom
     public var id: String { rawValue }
     public var title: String {
-        switch self { case .top: return "В начале"; case .afterTitle: return "После заголовка"; case .bottom: return "В конце" }
+        switch self { case .top: return String(localized: "В начале", bundle: .tinyPrinter); case .afterTitle: return String(localized: "После заголовка", bundle: .tinyPrinter); case .bottom: return String(localized: "В конце", bundle: .tinyPrinter) }
     }
 }
 
 /// Decorative fonts that ship with macOS and cover Cyrillic.
 public enum CardFonts {
     public static let all: [(name: String, title: String)] = [
-        ("", "Системный"),
-        ("SnellRoundhand-Bold", "Каллиграфия (Snell)"),
-        ("SnellRoundhand-Black", "Каллиграфия, жирная"),
-        ("SavoyeLetPlain", "Изящный (Savoye)"),
-        ("SignPainter-HouseScriptSemibold", "Вывеска (SignPainter)"),
-        ("Noteworthy-Bold", "От руки (Noteworthy)"),
-        ("BradleyHandITCTT-Bold", "От руки (Bradley)"),
-        ("ChalkboardSE-Bold", "Мелом (Chalkboard)"),
-        ("MarkerFelt-Wide", "Маркер"),
+        ("", String(localized: "Системный", bundle: .tinyPrinter)),
+        ("SnellRoundhand-Bold", String(localized: "Каллиграфия (Snell)", bundle: .tinyPrinter)),
+        ("SnellRoundhand-Black", String(localized: "Каллиграфия, жирная", bundle: .tinyPrinter)),
+        ("SavoyeLetPlain", String(localized: "Изящный (Savoye)", bundle: .tinyPrinter)),
+        ("SignPainter-HouseScriptSemibold", String(localized: "Вывеска (SignPainter)", bundle: .tinyPrinter)),
+        ("Noteworthy-Bold", String(localized: "От руки (Noteworthy)", bundle: .tinyPrinter)),
+        ("BradleyHandITCTT-Bold", String(localized: "От руки (Bradley)", bundle: .tinyPrinter)),
+        ("ChalkboardSE-Bold", String(localized: "Мелом (Chalkboard)", bundle: .tinyPrinter)),
+        ("MarkerFelt-Wide", String(localized: "Маркер", bundle: .tinyPrinter)),
         ("ComicSansMS-Bold", "Comic Sans"),
-        ("AmericanTypewriter-Semibold", "Печатная машинка"),
-        ("Georgia-Bold", "Классика (Georgia)"),
+        ("AmericanTypewriter-Semibold", String(localized: "Печатная машинка", bundle: .tinyPrinter)),
+        ("Georgia-Bold", String(localized: "Классика (Georgia)", bundle: .tinyPrinter)),
         ("PTSerif-Bold", "PT Serif"),
-        ("Copperplate-Bold", "Гравировка (Copperplate)"),
-        ("Phosphate-Inline", "Афиша (Phosphate)"),
-        ("Luminari-Regular", "Сказочный (Luminari)"),
-        ("Trattatello", "Средневековый"),
-        ("AvenirNext-Heavy", "Жирный гротеск"),
+        ("Copperplate-Bold", String(localized: "Гравировка (Copperplate)", bundle: .tinyPrinter)),
+        ("Phosphate-Inline", String(localized: "Афиша (Phosphate)", bundle: .tinyPrinter)),
+        ("Luminari-Regular", String(localized: "Сказочный (Luminari)", bundle: .tinyPrinter)),
+        ("Trattatello", String(localized: "Средневековый", bundle: .tinyPrinter)),
+        ("AvenirNext-Heavy", String(localized: "Жирный гротеск", bundle: .tinyPrinter)),
     ]
 
     /// `sizePt` in typographic points; the font is returned in printer dots.
@@ -123,11 +123,11 @@ public enum CardFonts {
 
 public struct CardDesign: Codable, Equatable {
     public var kind: CardKind = .postcard
-    public var title = "С днём рождения!"
+    public var title = String(localized: "С днём рождения!", bundle: .tinyPrinter)
     public var titleFont = "SnellRoundhand-Bold"
     public var titleSizePt: Double = 26
     public var titleStyle: CardTitleStyle = .plain
-    public var message = "Пусть всё задуманное сбудется!"
+    public var message = String(localized: "Пусть всё задуманное сбудется!", bundle: .tinyPrinter)
     public var messageFont = "Noteworthy-Bold"
     public var messageSizePt: Double = 13
     public var align: TextAlign = .center
@@ -254,7 +254,9 @@ public struct CardDesign: Codable, Equatable {
     }
 
     private func titleBlock(width w: Int) -> MonoBitmap {
-        let font = CardArt.fitted(title, fontName: titleFont, sizePt: titleSizePt, width: CGFloat(w) * (titleStyle == .banner ? 0.8 : 1))
+        // The ribbon's notch and padding take 0.8 × the font size on each side of the text.
+        let font = CardArt.fitted(title, fontName: titleFont, sizePt: titleSizePt, width: CGFloat(w),
+                                  sideInset: titleStyle == .banner ? 0.8 : 0)
         switch titleStyle {
         case .banner:
             return CardArt.banner(title, font: font, width: w)
@@ -312,51 +314,51 @@ public struct CardPreset: Identifiable {
     }
 
     public static let all: [CardPreset] = [
-        CardPreset("note", "Записка", icon: "note.text", prompt: "котик спит, свернувшись клубочком") { d in
+        CardPreset("note", String(localized: "Записка", bundle: .tinyPrinter), icon: "note.text", prompt: String(localized: "котик спит, свернувшись клубочком", bundle: .tinyPrinter)) { d in
             d.kind = .note; d.tape = true; d.lined = true; d.blankLines = 2; d.align = .left
-            d.message = "Не забудь покормить кота!"; d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 14
+            d.message = String(localized: "Не забудь покормить кота!", bundle: .tinyPrinter); d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 14
             d.imagePlacement = .bottom; d.imageWidthPercent = 45
         },
-        CardPreset("todo", "Список дел", icon: "checklist", prompt: "") { d in
+        CardPreset("todo", String(localized: "Список дел", bundle: .tinyPrinter), icon: "checklist", prompt: "") { d in
             d.kind = .note; d.lined = true; d.blankLines = 0; d.align = .left; d.frame = .dashed
-            d.title = "Сделать:"; d.titleFont = "Noteworthy-Bold"; d.titleSizePt = 20; d.titleStyle = .underline
+            d.title = String(localized: "Сделать:", bundle: .tinyPrinter); d.titleFont = "Noteworthy-Bold"; d.titleSizePt = 20; d.titleStyle = .underline
             d.message = "☐ \n☐ \n☐ \n☐ "; d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 14
         },
-        CardPreset("birthday", "День рождения", icon: "birthday.cake", prompt: "праздничный торт со свечками и воздушные шарики") { d in
+        CardPreset("birthday", String(localized: "День рождения", bundle: .tinyPrinter), icon: "birthday.cake", prompt: String(localized: "праздничный торт со свечками и воздушные шарики", bundle: .tinyPrinter)) { d in
             d.frame = .scallop; d.ornament = .stars; d.ornamentBottom = true
-            d.title = "С днём рождения!"; d.titleFont = "SnellRoundhand-Black"; d.titleSizePt = 26
-            d.message = "Пусть всё задуманное сбудется!"; d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 13
+            d.title = String(localized: "С днём рождения!", bundle: .tinyPrinter); d.titleFont = "SnellRoundhand-Black"; d.titleSizePt = 26
+            d.message = String(localized: "Пусть всё задуманное сбудется!", bundle: .tinyPrinter); d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 13
             d.imageWidthPercent = 75
         },
-        CardPreset("thanks", "Спасибо", icon: "hands.clap", prompt: "букет полевых цветов") { d in
+        CardPreset("thanks", String(localized: "Спасибо", bundle: .tinyPrinter), icon: "hands.clap", prompt: String(localized: "букет полевых цветов", bundle: .tinyPrinter)) { d in
             d.frame = .double; d.ornament = .sparkles
-            d.title = "Спасибо!"; d.titleFont = "SignPainter-HouseScriptSemibold"; d.titleSizePt = 36
-            d.message = "Ты лучше всех"; d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 14
+            d.title = String(localized: "Спасибо!", bundle: .tinyPrinter); d.titleFont = "SignPainter-HouseScriptSemibold"; d.titleSizePt = 36
+            d.message = String(localized: "Ты лучше всех", bundle: .tinyPrinter); d.messageFont = "Noteworthy-Bold"; d.messageSizePt = 14
             d.imageWidthPercent = 70
         },
-        CardPreset("love", "Люблю", icon: "heart", prompt: "два котика обнимаются, вокруг сердечки") { d in
+        CardPreset("love", String(localized: "Люблю", bundle: .tinyPrinter), icon: "heart", prompt: String(localized: "два котика обнимаются, вокруг сердечки", bundle: .tinyPrinter)) { d in
             d.frame = .hearts
-            d.title = "Люблю тебя"; d.titleFont = "SnellRoundhand-Black"; d.titleSizePt = 26
+            d.title = String(localized: "Люблю тебя", bundle: .tinyPrinter); d.titleFont = "SnellRoundhand-Black"; d.titleSizePt = 26
             d.message = ""; d.signature = ""; d.imageWidthPercent = 70; d.imagePlacement = .afterTitle
         },
-        CardPreset("newyear", "Новый год", icon: "snowflake", prompt: "наряженная ёлка с подарками") { d in
+        CardPreset("newyear", String(localized: "Новый год", bundle: .tinyPrinter), icon: "snowflake", prompt: String(localized: "наряженная ёлка с подарками", bundle: .tinyPrinter)) { d in
             d.frame = .snowflakes; d.ornament = .divider
-            d.title = "С Новым годом!"; d.titleFont = "Copperplate-Bold"; d.titleSizePt = 15; d.titleStyle = .banner
-            d.message = "Счастья, тепла и чудес"; d.messageFont = "SnellRoundhand-Bold"; d.messageSizePt = 18
+            d.title = String(localized: "С Новым годом!", bundle: .tinyPrinter); d.titleFont = "Copperplate-Bold"; d.titleSizePt = 15; d.titleStyle = .banner
+            d.message = String(localized: "Счастья, тепла и чудес", bundle: .tinyPrinter); d.messageFont = "SnellRoundhand-Bold"; d.messageSizePt = 18
             d.imageWidthPercent = 70
         },
-        CardPreset("coupon", "Купон", icon: "ticket", prompt: "") { d in
+        CardPreset("coupon", String(localized: "Купон", bundle: .tinyPrinter), icon: "ticket", prompt: "") { d in
             d.frame = .ticket; d.ornament = .hearts
-            d.title = "КУПОН"; d.titleFont = "Copperplate-Bold"; d.titleSizePt = 20; d.titleStyle = .banner
-            d.message = "на одни обнимашки\nвне очереди"; d.messageFont = "AmericanTypewriter-Semibold"; d.messageSizePt = 14
-            d.signature = "Действителен всегда"
+            d.title = String(localized: "КУПОН", bundle: .tinyPrinter); d.titleFont = "Copperplate-Bold"; d.titleSizePt = 20; d.titleStyle = .banner
+            d.message = String(localized: "на одни обнимашки\nвне очереди", bundle: .tinyPrinter); d.messageFont = "AmericanTypewriter-Semibold"; d.messageSizePt = 14
+            d.signature = String(localized: "Действителен всегда", bundle: .tinyPrinter)
         },
-        CardPreset("sticker", "Стикер", icon: "seal", prompt: "милый котик машет лапкой") { d in
+        CardPreset("sticker", String(localized: "Стикер", bundle: .tinyPrinter), icon: "seal", prompt: String(localized: "милый котик машет лапкой", bundle: .tinyPrinter)) { d in
             d = d.switched(to: .sticker)
         },
-        CardPreset("sticker-text", "Стикер + надпись", icon: "text.bubble", prompt: "улыбающееся солнышко") { d in
+        CardPreset("sticker-text", String(localized: "Стикер + надпись", bundle: .tinyPrinter), icon: "text.bubble", prompt: String(localized: "улыбающееся солнышко", bundle: .tinyPrinter)) { d in
             d = d.switched(to: .sticker)
-            d.title = "Привет!"; d.titleFont = "SignPainter-HouseScriptSemibold"; d.titleSizePt = 34
+            d.title = String(localized: "Привет!", bundle: .tinyPrinter); d.titleFont = "SignPainter-HouseScriptSemibold"; d.titleSizePt = 34
             d.imagePlacement = .top; d.imageWidthPercent = 80
         },
     ]
@@ -375,12 +377,20 @@ enum CardArt {
     }
 
     /// Shrinks the font only when a single word does not fit the width (long titles still wrap between words).
-    static func fitted(_ text: String, fontName: String, sizePt: Double, width: CGFloat) -> NSFont {
-        let font = CardFonts.font(fontName, sizePt: sizePt)
+    /// Shrinks the font until the longest word fits on a line, so words never break in the middle
+    /// (translations are often longer than the original). `sideInset` is per side, in font sizes.
+    static func fitted(_ text: String, fontName: String, sizePt: Double, width: CGFloat, sideInset: CGFloat = 0) -> NSFont {
         let words = text.split(whereSeparator: { $0 == " " || $0.isNewline }).map(String.init)
-        let widest = words.map { TextStyle.measure(attributed($0, font: font, align: .left)).width }.max() ?? 0
-        guard widest > width else { return font }
-        return CardFonts.font(fontName, sizePt: sizePt * Double(width / widest) * 0.96)
+        var pt = sizePt
+        var font = CardFonts.font(fontName, sizePt: pt)
+        for _ in 0..<3 {
+            let room = width - 2 * sideInset * font.pointSize
+            let widest = words.map { TextStyle.measure(attributed($0, font: font, align: .left)).width }.max() ?? 0
+            guard widest > room, widest > 0, room > 0 else { return font }
+            pt *= Double(room / widest) * 0.96
+            font = CardFonts.font(fontName, sizePt: pt)
+        }
+        return font
     }
 
     /// Text rendered to ink only (swashes of script fonts are not clipped). Returns the bitmap and the text width.

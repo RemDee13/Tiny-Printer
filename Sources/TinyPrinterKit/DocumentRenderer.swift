@@ -7,7 +7,7 @@ public struct DocumentRenderOptions: Codable, Equatable {
         case auto, text, photo
         public var id: String { rawValue }
         public var title: String {
-            switch self { case .auto: return "Авто"; case .text: return "Текст / QR"; case .photo: return "Фото" }
+            switch self { case .auto: return String(localized: "Авто", bundle: .tinyPrinter); case .text: return String(localized: "Текст / QR", bundle: .tinyPrinter); case .photo: return String(localized: "Фото", bundle: .tinyPrinter) }
         }
     }
 

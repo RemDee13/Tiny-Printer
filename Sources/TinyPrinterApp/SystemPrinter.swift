@@ -67,7 +67,7 @@ final class SystemPrinter {
                 guard let self, !self.stopping else { return }
                 self.quickExits = Date().timeIntervalSince(self.startedAt) < 10 ? self.quickExits + 1 : 0
                 guard self.quickExits < 3 else {
-                    self.lastError = "ippeveprinter падает при запуске (код \(proc.terminationStatus))"
+                    self.lastError = String(localized: "ippeveprinter падает при запуске (код \(proc.terminationStatus))")
                     self.onLog?(self.lastError!)
                     return
                 }
@@ -126,11 +126,11 @@ final class SystemPrinter {
             "-v", "ipp://localhost:\(Self.ippPort)/ipp/print",
             "-m", "everywhere",
             "-D", "Tiny Printer",
-            "-L", "Bluetooth, 57 мм",
+            "-L", String(localized: "Bluetooth, 57 мм"),
             "-o", "printer-is-shared=false",
             "-o", "media-default=57x40mm",
         ])
-        return r.status == 0 ? nil : (r.output.isEmpty ? "lpadmin завершился с кодом \(r.status)" : r.output)
+        return r.status == 0 ? nil : (r.output.isEmpty ? String(localized: "lpadmin завершился с кодом \(r.status)") : r.output)
     }
 
     func uninstall() {
@@ -139,23 +139,33 @@ final class SystemPrinter {
 
     // MARK: "PDF" menu of the print dialog
 
-    static var pdfServiceLink: URL {
-        FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("Library/PDF Services/Печать на Tiny Printer.app")
+    static var pdfServicesDir: URL {
+        FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/PDF Services")
     }
 
-    var pdfServiceInstalled: Bool {
-        (try? FileManager.default.destinationOfSymbolicLink(atPath: Self.pdfServiceLink.path)) != nil
+    /// The menu item is named in the current language, so look for any of our links, whatever they are called.
+    static var pdfServiceLinks: [URL] {
+        let fm = FileManager.default
+        let items = (try? fm.contentsOfDirectory(at: pdfServicesDir, includingPropertiesForKeys: nil)) ?? []
+        return items.filter { url in
+            guard let dest = try? fm.destinationOfSymbolicLink(atPath: url.path) else { return false }
+            return URL(fileURLWithPath: dest).lastPathComponent == Bundle.main.bundleURL.lastPathComponent
+        }
     }
+
+    var pdfServiceInstalled: Bool { !Self.pdfServiceLinks.isEmpty }
 
     func installPDFService() throws {
-        let link = Self.pdfServiceLink
-        try FileManager.default.createDirectory(at: link.deletingLastPathComponent(), withIntermediateDirectories: true)
-        try? FileManager.default.removeItem(at: link)
-        try FileManager.default.createSymbolicLink(at: link, withDestinationURL: Bundle.main.bundleURL)
+        let name = String(localized: "Печать на Tiny Printer") + ".app"
+        try FileManager.default.createDirectory(at: Self.pdfServicesDir, withIntermediateDirectories: true)
+        uninstallPDFService()
+        try FileManager.default.createSymbolicLink(at: Self.pdfServicesDir.appendingPathComponent(name),
+                                                   withDestinationURL: Bundle.main.bundleURL)
     }
 
-    func uninstallPDFService() { try? FileManager.default.removeItem(at: Self.pdfServiceLink) }
+    func uninstallPDFService() {
+        for link in Self.pdfServiceLinks { try? FileManager.default.removeItem(at: link) }
+    }
 
     // MARK: helpers
 

@@ -164,11 +164,11 @@ struct TextEditorView: View {
     var body: some View {
         InspectorForm(tab: .text) {
             Section("Текст") {
-                TextBox(text: $model.text.text, placeholder: "Например: Специи", minHeight: 90, font: .system(size: 15))
+                TextBox(text: $model.text.text, placeholder: String(localized: "Например: Специи"), minHeight: 90, font: .system(size: 15))
             }
             Section("Шрифт") {
                 FontPicker(name: $model.text.fontName)
-                SliderRow(title: "Размер", value: $model.text.sizePt, range: 6...160) { "\(Int($0)) pt" }
+                SliderRow(title: String(localized: "Размер"), value: $model.text.sizePt, range: 6...160) { "\(Int($0)) pt" }
                 Toggle("Жирный", isOn: $model.text.bold)
                 AlignPicker(align: $model.text.align)
             }
@@ -181,8 +181,8 @@ struct TextEditorView: View {
                 if model.text.alongTape {
                     Toggle("Растянуть на всю ширину ленты", isOn: $model.text.autoFit)
                 }
-                MMField(title: "Длина", value: $model.text.lengthMM)
-                MMField(title: "Поля", value: $model.text.paddingMM, range: 0...20, zeroMeansAuto: false)
+                MMField(title: String(localized: "Длина"), value: $model.text.lengthMM)
+                MMField(title: String(localized: "Поля"), value: $model.text.paddingMM, range: 0...20, zeroMeansAuto: false)
             } header: {
                 Text("Этикетка")
             } footer: {
@@ -204,7 +204,7 @@ struct QREditorView: View {
     enum Kind: String, CaseIterable, Identifiable {
         case link, wifi
         var id: String { rawValue }
-        var title: String { self == .link ? "Ссылка или текст" : "Wi‑Fi" }
+        var title: String { self == .link ? String(localized: "Ссылка или текст") : "Wi‑Fi" }
     }
 
     var body: some View {
@@ -217,7 +217,7 @@ struct QREditorView: View {
                 .labelsHidden()
                 switch kind {
                 case .link:
-                    WideField(title: "Ссылка или текст", text: $model.qr.content, prompt: "https://…", lines: 1...4)
+                    WideField(title: String(localized: "Ссылка или текст"), text: $model.qr.content, prompt: "https://…", lines: 1...4)
                 case .wifi:
                     TextField("Сеть (SSID)", text: $wifiSSID)
                     SecureField("Пароль", text: $wifiPassword)
@@ -225,15 +225,15 @@ struct QREditorView: View {
                 }
             }
             Section("Подпись") {
-                WideField(title: "Подпись", text: $model.qr.caption, prompt: "Первая строка — жирная", lines: 1...4)
-                SliderRow(title: "Размер", value: $model.qr.captionSizePt, range: 6...36) { "\(Int($0)) pt" }
+                WideField(title: String(localized: "Подпись"), text: $model.qr.caption, prompt: String(localized: "Первая строка — жирная"), lines: 1...4)
+                SliderRow(title: String(localized: "Размер"), value: $model.qr.captionSizePt, range: 6...36) { "\(Int($0)) pt" }
                 Picker("Расположение", selection: $model.qr.layout) {
                     ForEach(QRLayout.allCases) { Text($0.title).tag($0) }
                 }
             }
             Section("Размер") {
-                SliderRow(title: "Сторона QR", value: $model.qr.qrSizeMM, range: 8...46) { "\(Int($0)) мм" }
-                MMField(title: "Длина этикетки", value: $model.qr.lengthMM)
+                SliderRow(title: String(localized: "Сторона QR"), value: $model.qr.qrSizeMM, range: 8...46) { String(localized: "\(Int($0)) мм") }
+                MMField(title: String(localized: "Длина этикетки"), value: $model.qr.lengthMM)
                 Picker("Запас на повреждения", selection: $model.qr.correction) {
                     Text("L — мельче").tag(QRCorrection.low)
                     Text("M — обычно").tag(QRCorrection.medium)
@@ -263,7 +263,7 @@ struct PhotoEditorView: View {
     var body: some View {
         InspectorForm(tab: .photo) {
             Section("Фото") {
-                ImageWell(image: model.photoImage, name: model.photoName, emptyText: "Перетащите фото на ленту",
+                ImageWell(image: model.photoImage, name: model.photoName, emptyText: String(localized: "Перетащите фото на ленту"),
                           paste: { Self.pasteImage(into: model) }, pick: { Self.pickImage(into: model) },
                           clear: { model.photoImage = nil; model.photoName = "" })
             }
@@ -271,10 +271,10 @@ struct PhotoEditorView: View {
                 Picker("Растрирование", selection: $model.photo.dither) {
                     ForEach(DitherMethod.allCases) { Text($0.title).tag($0) }
                 }
-                SliderRow(title: "Яркость", value: $model.photo.brightness, range: -0.5...0.5)
-                SliderRow(title: "Контраст", value: $model.photo.contrast, range: -0.5...0.8)
-                SliderRow(title: "Гамма", value: $model.photo.gamma, range: 0.4...2.5)
-                SliderRow(title: "Резкость", value: $model.photo.sharpen, range: 0...2)
+                SliderRow(title: String(localized: "Яркость"), value: $model.photo.brightness, range: -0.5...0.5)
+                SliderRow(title: String(localized: "Контраст"), value: $model.photo.contrast, range: -0.5...0.8)
+                SliderRow(title: String(localized: "Гамма"), value: $model.photo.gamma, range: 0.4...2.5)
+                SliderRow(title: String(localized: "Резкость"), value: $model.photo.sharpen, range: 0...2)
                 Toggle("Негатив", isOn: $model.photo.invert)
                 Button("Сбросить настройки") {
                     let keepRotate = model.photo.rotate
@@ -283,9 +283,9 @@ struct PhotoEditorView: View {
                 }
             }
             Section("Размер") {
-                SliderRow(title: "Ширина", value: $model.photo.widthPercent, range: 20...100, step: 5) { "\(Int($0))%" }
+                SliderRow(title: String(localized: "Ширина"), value: $model.photo.widthPercent, range: 20...100, step: 5) { "\(Int($0))%" }
                 Toggle("Повернуть на 90°", isOn: $model.photo.rotate)
-                MMField(title: "Макс. длина", value: $model.photo.maxLengthMM)
+                MMField(title: String(localized: "Макс. длина"), value: $model.photo.maxLengthMM)
             }
         }
     }
@@ -300,9 +300,9 @@ struct PhotoEditorView: View {
     static func pasteImage(into model: AppModel) {
         if let img = NSImage(pasteboard: .general), let cg = img.cgImage(forProposedRect: nil, context: nil, hints: nil) {
             model.photoImage = cg
-            model.photoName = "Из буфера обмена"
+            model.photoName = String(localized: "Из буфера обмена")
         } else {
-            model.show("В буфере нет картинки")
+            model.show(String(localized: "В буфере нет картинки"), error: true)
         }
     }
 }

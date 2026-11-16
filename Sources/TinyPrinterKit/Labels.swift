@@ -8,7 +8,7 @@ import Foundation
 // MARK: - Text sticker
 
 public struct TextLabel: Codable, Equatable {
-    public var text = "Привет!"
+    public var text = String(localized: "Привет!", bundle: .tinyPrinter)
     public var fontName = ""            // empty = system font
     public var sizePt: Double = 28
     public var bold = true
@@ -77,7 +77,7 @@ public struct TextLabel: Codable, Equatable {
 public enum QRLayout: String, Codable, CaseIterable, Identifiable {
     case stacked, side
     public var id: String { rawValue }
-    public var title: String { self == .stacked ? "QR сверху, подпись снизу" : "QR слева, подпись справа" }
+    public var title: String { self == .stacked ? String(localized: "QR сверху, подпись снизу", bundle: .tinyPrinter) : String(localized: "QR слева, подпись справа", bundle: .tinyPrinter) }
 }
 
 public struct QRLabel: Codable, Equatable {
@@ -113,7 +113,7 @@ public enum QRRenderer {
                               lengthMM: Double, paddingMM: Double, correction: QRCorrection, width: Int) -> MonoBitmap {
         let pad = Units.dots(mm: paddingMM)
         guard let qr = QRMatrix(content, correction: correction) else {
-            var t = TextLabel(); t.text = "QR: пусто"; t.sizePt = 12
+            var t = TextLabel(); t.text = String(localized: "QR: пусто", bundle: .tinyPrinter); t.sizePt = 12
             return t.render(width: width)
         }
         let fixedLen = lengthMM > 0 ? Units.dots(mm: lengthMM) : nil

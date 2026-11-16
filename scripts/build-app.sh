@@ -14,6 +14,7 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN/TinyPrinter" "$APP/Contents/MacOS/TinyPrinter"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 [ -f Resources/AppIcon.icns ] && cp Resources/AppIcon.icns "$APP/Contents/Resources/"
+cp -R Resources/Localization/*.lproj "$APP/Contents/Resources/"
 cp "$BIN/tinyprint" build/tinyprint
 
 # A stable signing identity keeps the Bluetooth permission across rebuilds.

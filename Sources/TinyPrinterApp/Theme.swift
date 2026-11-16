@@ -97,6 +97,7 @@ struct StatusDot: View {
 /// Bottom-centre notification capsule.
 struct ToastView: View {
     let text: String
+    var isError = false
 
     var body: some View {
         HStack(spacing: 8) {
@@ -110,10 +111,6 @@ struct ToastView: View {
         .shadow(color: .black.opacity(0.12), radius: 12, y: 4)
     }
 
-    private var isError: Bool {
-        let t = text.lowercased()
-        return ["ошибк", "не удалось", "нет ", "не найден", "нечего", "отключ", "не ответил", "занят"].contains { t.contains($0) }
-    }
     private var icon: String { isError ? "exclamationmark.circle.fill" : "checkmark.circle.fill" }
     private var iconColor: Color { isError ? .orange : .green }
 }
@@ -195,9 +192,9 @@ enum AppAppearance: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .system: return "Как в системе"
-        case .light: return "Светлое"
-        case .dark: return "Тёмное"
+        case .system: return String(localized: "Как в системе")
+        case .light: return String(localized: "Светлое")
+        case .dark: return String(localized: "Тёмное")
         }
     }
 

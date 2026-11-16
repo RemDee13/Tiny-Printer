@@ -5,7 +5,7 @@ import TinyPrinterKit
 // tinyprint — command line front-end. Renders labels locally and hands them to the running
 // Tiny Printer app (which owns the Bluetooth connection) via its local API on 127.0.0.1:8614.
 
-let usage = """
+let usage = String(localized: """
 tinyprint — печать на Tiny Printer из терминала
 
   tinyprint status
@@ -23,7 +23,7 @@ tinyprint — печать на Tiny Printer из терминала
   --copies N            копий (по умолчанию 1)
   --density 1…5         плотность (по умолчанию — из настроек приложения)
   --paper sticker|receipt
-"""
+""", bundle: .tinyPrinter)
 
 struct Args {
     var positional: [String] = []
@@ -95,31 +95,31 @@ if let p = args.options["paper"] { printQuery.append(URLQueryItem(name: "paper",
 
 /// Sends a rendered bitmap, or writes it to --preview.
 func output(_ bm: MonoBitmap) {
-    guard bm.height > 0 else { fail("Пустая этикетка") }
+    guard bm.height > 0 else { fail(String(localized: "Пустая этикетка", bundle: .tinyPrinter)) }
     let mm = Int(Units.mm(dots: bm.height).rounded())
     if let path = args.options["preview"] {
-        do { try bm.pngData()!.write(to: URL(fileURLWithPath: path)) } catch { fail("Не удалось записать \(path): \(error)") }
-        print("Превью: \(path) (\(bm.width)×\(bm.height) точек, \(mm) мм)")
+        do { try bm.pngData()!.write(to: URL(fileURLWithPath: path)) } catch { fail(String(localized: "Не удалось записать \(path): \(error.localizedDescription)", bundle: .tinyPrinter)) }
+        print(String(localized: "Превью: \(path) (\(bm.width)×\(bm.height) точек, \(mm) мм)", bundle: .tinyPrinter))
         return
     }
     guard let (code, data) = request("print/raw", method: "POST", body: bm.pngData(), contentType: "image/png", query: printQuery) else {
-        fail("Приложение Tiny Printer не запущено (нет ответа на 127.0.0.1:8614)")
+        fail(String(localized: "Приложение Tiny Printer не запущено (нет ответа на 127.0.0.1:8614)", bundle: .tinyPrinter))
     }
-    if code != 200 { fail("Ошибка: " + (String(data: data, encoding: .utf8) ?? "\(code)")) }
-    print("Напечатано: \(mm) мм")
+    if code != 200 { fail(String(localized: "Ошибка: ", bundle: .tinyPrinter) + (String(data: data, encoding: .utf8) ?? "\(code)")) }
+    print(String(localized: "Напечатано: \(mm) мм", bundle: .tinyPrinter))
 }
 
 switch command {
 case "status":
-    guard let (_, data) = request("status") else { fail("Приложение Tiny Printer не запущено") }
+    guard let (_, data) = request("status") else { fail(String(localized: "Приложение Tiny Printer не запущено", bundle: .tinyPrinter)) }
     print(String(data: data, encoding: .utf8) ?? "")
 
 case "log":
-    guard let (_, data) = request("log") else { fail("Приложение Tiny Printer не запущено") }
+    guard let (_, data) = request("log") else { fail(String(localized: "Приложение Tiny Printer не запущено", bundle: .tinyPrinter)) }
     print(String(data: data, encoding: .utf8) ?? "")
 
 case "text":
-    guard let text = rest.first else { fail("Укажите текст: tinyprint text \"Привет\"") }
+    guard let text = rest.first else { fail(String(localized: "Укажите текст: tinyprint text \"Привет\"", bundle: .tinyPrinter)) }
     var t = TextLabel()
     t.text = text.replacingOccurrences(of: "\\n", with: "\n")
     t.sizePt = args.double("size") ?? 24
@@ -134,7 +134,7 @@ case "text":
     output(t.render(width: args.options["preview"] == nil ? printerWidth() : 384))
 
 case "qr":
-    guard let content = rest.first else { fail("Укажите содержимое: tinyprint qr \"https://…\"") }
+    guard let content = rest.first else { fail(String(localized: "Укажите содержимое: tinyprint qr \"https://…\"", bundle: .tinyPrinter)) }
     var q = QRLabel()
     q.content = content
     q.caption = (args.options["caption"] ?? "").replacingOccurrences(of: "\\n", with: "\n")
@@ -144,7 +144,7 @@ case "qr":
     output(q.render(width: args.options["preview"] == nil ? printerWidth() : 384))
 
 case "image":
-    guard let path = rest.first, let img = ImageLoader.load(url: URL(fileURLWithPath: path)) else { fail("Не удалось открыть картинку") }
+    guard let path = rest.first, let img = ImageLoader.load(url: URL(fileURLWithPath: path)) else { fail(String(localized: "Не удалось открыть картинку", bundle: .tinyPrinter)) }
     var p = PhotoSettings()
     switch args.options["dither"] ?? "atkinson" {
     case "floyd": p.dither = .floydSteinberg
@@ -158,7 +158,7 @@ case "image":
     output(p.render(img, width: args.options["preview"] == nil ? printerWidth() : 384))
 
 case "file":
-    guard let path = rest.first, let data = FileManager.default.contents(atPath: path) else { fail("Не удалось прочитать файл") }
+    guard let path = rest.first, let data = FileManager.default.contents(atPath: path) else { fail(String(localized: "Не удалось прочитать файл", bundle: .tinyPrinter)) }
     var opts = DocumentRenderOptions()
     if let m = args.options["mode"].flatMap(DocumentRenderOptions.Mode.init(rawValue:)) { opts.mode = m }
     opts.trimBottom = args.flags.contains("trim")
@@ -171,22 +171,22 @@ case "file":
         if opts.trimBottom { q.append(URLQueryItem(name: "trim", value: "1")) }
         let type = path.lowercased().hasSuffix(".pdf") ? "application/pdf" : "application/octet-stream"
         guard let (code, body) = request("print", method: "POST", body: data, contentType: type, query: q) else {
-            fail("Приложение Tiny Printer не запущено")
+            fail(String(localized: "Приложение Tiny Printer не запущено", bundle: .tinyPrinter))
         }
-        if code != 200 { fail("Ошибка: " + (String(data: body, encoding: .utf8) ?? "\(code)")) }
+        if code != 200 { fail(String(localized: "Ошибка: ", bundle: .tinyPrinter) + (String(data: body, encoding: .utf8) ?? "\(code)")) }
         print(String(data: body, encoding: .utf8) ?? "OK")
     }
 
 case "card":
     if args.flags.contains("list") {
-        print("Шаблоны:  " + CardPreset.all.map { "\($0.id) (\($0.title))" }.joined(separator: ", "))
-        print("Рамки:    " + CardFrame.allCases.map(\.rawValue).joined(separator: ", "))
-        print("Украшения: " + CardOrnament.allCases.map(\.rawValue).joined(separator: ", "))
+        print(String(localized: "Шаблоны:  ", bundle: .tinyPrinter) + CardPreset.all.map { "\($0.id) (\($0.title))" }.joined(separator: ", "))
+        print(String(localized: "Рамки:    ", bundle: .tinyPrinter) + CardFrame.allCases.map(\.rawValue).joined(separator: ", "))
+        print(String(localized: "Украшения: ", bundle: .tinyPrinter) + CardOrnament.allCases.map(\.rawValue).joined(separator: ", "))
         exit(0)
     }
     var card = CardDesign()
     if let id = args.options["preset"] {
-        guard let p = CardPreset.all.first(where: { $0.id == id }) else { fail("Нет шаблона \(id). tinyprint card --list") }
+        guard let p = CardPreset.all.first(where: { $0.id == id }) else { fail(String(localized: "Нет шаблона \(id). tinyprint card --list", bundle: .tinyPrinter)) }
         card = p.design
     }
     let unescape = { (s: String) in s.replacingOccurrences(of: "\\n", with: "\n") }
@@ -194,11 +194,11 @@ case "card":
     if let m = args.options["message"] { card.message = unescape(m) }
     if let s = args.options["signature"] { card.signature = unescape(s) }
     if let f = args.options["frame"] {
-        guard let v = CardFrame(rawValue: f) else { fail("Нет рамки \(f). tinyprint card --list") }
+        guard let v = CardFrame(rawValue: f) else { fail(String(localized: "Нет рамки \(f). tinyprint card --list", bundle: .tinyPrinter)) }
         card.frame = v
     }
     if let o = args.options["ornament"] {
-        guard let v = CardOrnament(rawValue: o) else { fail("Нет украшения \(o). tinyprint card --list") }
+        guard let v = CardOrnament(rawValue: o) else { fail(String(localized: "Нет украшения \(o). tinyprint card --list", bundle: .tinyPrinter)) }
         card.ornament = v
     }
     if args.flags.contains("cut") { card.cutOutline = true }
@@ -206,7 +206,7 @@ case "card":
     if let r = args.int("repeat") { card.repeatCount = max(1, r) }
     var image: CGImage?
     if let path = args.options["image"] {
-        guard let img = ImageLoader.load(url: URL(fileURLWithPath: path)) else { fail("Не удалось открыть картинку \(path)") }
+        guard let img = ImageLoader.load(url: URL(fileURLWithPath: path)) else { fail(String(localized: "Не удалось открыть картинку \(path)", bundle: .tinyPrinter)) }
         image = img
     }
     output(card.render(width: args.options["preview"] == nil ? printerWidth() : 384, image: image))

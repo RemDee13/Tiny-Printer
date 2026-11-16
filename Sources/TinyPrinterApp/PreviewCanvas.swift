@@ -61,7 +61,7 @@ struct PreviewCanvas: View {
         .overlay(alignment: .bottom) { bottomBar }
         .overlay(alignment: .top) {
             if let toast = model.toast {
-                ToastView(text: toast)
+                ToastView(text: toast.text, isError: toast.isError)
                     .padding(.top, 12)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
@@ -196,8 +196,8 @@ struct PreviewCanvas: View {
                 guard let img = obj as? NSImage, let cg = img.cgImage(forProposedRect: nil, context: nil, hints: nil) else { return }
                 DispatchQueue.main.async {
                     let m = AppModel.shared
-                    if m.tab == .cards { m.setCardImage(cg, name: "Перетащенная картинка") } else {
-                        m.photoImage = cg; m.photoName = "Перетащенная картинка"; m.tab = .photo
+                    if m.tab == .cards { m.setCardImage(cg, name: String(localized: "Перетащенная картинка")) } else {
+                        m.photoImage = cg; m.photoName = String(localized: "Перетащенная картинка"); m.tab = .photo
                     }
                 }
             }

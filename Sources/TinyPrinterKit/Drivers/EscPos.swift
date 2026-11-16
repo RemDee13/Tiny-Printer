@@ -109,7 +109,7 @@ public final class LuckJingleDriver: PrinterDriver {
         job += [0x10, 0xFF, 0xF1, 0x45]
         return [
             .send(Data(job), .command),
-            .maybeWait(label: "окончание печати", timeout: 10 + Double(bm.height) / 60) { d in
+            .maybeWait(label: String(localized: "окончание печати", bundle: .tinyPrinter), timeout: 10 + Double(bm.height) / 60) { d in
                 (d.count >= 2 && d[d.startIndex] == 0x4F && d[d.startIndex + 1] == 0x4B) || d.first == 0xAA
             },
         ]
@@ -134,7 +134,7 @@ public final class LuckJingleDriver: PrinterDriver {
 
 public final class EscPosDriver: PrinterDriver {
     public static let id = "escpos"
-    public static let displayName = "ESC/POS (универсальный)"
+    public static let displayName = String(localized: "ESC/POS (универсальный)", bundle: .tinyPrinter)
     static let yhkNames = ["YHK", "CTP", "COREPRINT", "INSTAPRINT"]
 
     struct Layout { let service: CBUUID; let write: [CBUUID]; let notify: CBUUID? }

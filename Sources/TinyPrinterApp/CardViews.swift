@@ -9,10 +9,10 @@ enum CardPane: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .templates: return "Шаблоны"
-        case .picture: return "Картинка"
-        case .text: return "Текст"
-        case .style: return "Вид"
+        case .templates: return String(localized: "Шаблоны")
+        case .picture: return String(localized: "Картинка")
+        case .text: return String(localized: "Текст")
+        case .style: return String(localized: "Вид")
         }
     }
     var icon: String {
@@ -27,21 +27,21 @@ enum CardPane: String, CaseIterable, Identifiable {
 
 extension CardKind {
     var plural: String {
-        switch self { case .note: return "Записки"; case .postcard: return "Открытки"; case .sticker: return "Стикеры" }
+        switch self { case .note: return String(localized: "Записки"); case .postcard: return String(localized: "Открытки"); case .sticker: return String(localized: "Стикеры") }
     }
 }
 
 extension AIStyle {
     var shortTitle: String {
         switch self {
-        case .lineArt: return "Контур"
-        case .cute: return "Милый"
-        case .doodle: return "Дудл"
-        case .woodcut: return "Гравюра"
-        case .silhouette: return "Силуэт"
-        case .tattoo: return "Тату"
-        case .pixel: return "Пиксели"
-        case .photo: return "Фото"
+        case .lineArt: return String(localized: "Контур")
+        case .cute: return String(localized: "Милый")
+        case .doodle: return String(localized: "Дудл")
+        case .woodcut: return String(localized: "Гравюра")
+        case .silhouette: return String(localized: "Силуэт")
+        case .tattoo: return String(localized: "Тату")
+        case .pixel: return String(localized: "Пиксели")
+        case .photo: return String(localized: "Фото")
         }
     }
     var icon: String {
@@ -188,7 +188,7 @@ struct TemplatesPane: View {
 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 98), spacing: 10)], spacing: 14) {
                     if filter == nil {
-                        TemplateTile(title: "Чистый лист", image: nil, placeholder: "plus", selected: lastPreset == "blank") {
+                        TemplateTile(title: String(localized: "Чистый лист"), image: nil, placeholder: "plus", selected: lastPreset == "blank") {
                             var d = CardDesign.blank
                             d.kind = .postcard
                             model.card = d
@@ -278,7 +278,7 @@ struct PicturePane: View {
             VStack(alignment: .leading, spacing: 16) {
                 Panel {
                     ImageWell(image: model.cardImage, name: model.cardImageName,
-                              emptyText: "Картинки нет — перетащите её на ленту или нарисуйте ниже",
+                              emptyText: String(localized: "Картинки нет — перетащите её на ленту или нарисуйте ниже"),
                               paste: paste, pick: pick, clear: { model.setCardImage(nil, name: "") })
                 }
                 aiPanel
@@ -370,13 +370,13 @@ struct PicturePane: View {
 
     private var spendText: String? {
         guard !model.aiLedger.isEmpty else { return nil }
-        return "всего ≈ \(AIPricing.format(model.aiSpent))"
+        return String(localized: "всего ≈ \(AIPricing.format(model.aiSpent))")
     }
 
     private var history: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                BlockTitle(title: "Нарисованные раньше", systemImage: "clock")
+                BlockTitle(title: String(localized: "Нарисованные раньше"), systemImage: "clock")
                 Button("Папка") { NSWorkspace.shared.open(AppModel.aiDir) }
                     .buttonStyle(.link).font(.caption)
             }
@@ -405,7 +405,7 @@ struct PicturePane: View {
 
     private var placement: some View {
         VStack(alignment: .leading, spacing: 8) {
-            BlockTitle(title: "Как разместить картинку", systemImage: "rectangle.center.inset.filled")
+            BlockTitle(title: String(localized: "Как разместить картинку"), systemImage: "rectangle.center.inset.filled")
             Panel {
                 Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 10) {
                     GridRow {
@@ -449,9 +449,9 @@ struct PicturePane: View {
 
     private func paste() {
         if let img = NSImage(pasteboard: .general), let cg = img.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-            model.setCardImage(cg, name: "Из буфера обмена")
+            model.setCardImage(cg, name: String(localized: "Из буфера обмена"))
         } else {
-            model.show("В буфере нет картинки")
+            model.show(String(localized: "В буфере нет картинки"), error: true)
         }
     }
 }
@@ -464,21 +464,21 @@ struct CardTextPane: View {
     var body: some View {
         Form {
             Section("Заголовок") {
-                WideField(title: "Текст заголовка", text: $model.card.title, prompt: "С днём рождения!", lines: 1...3)
-                CardFontPicker(title: "Шрифт", name: $model.card.titleFont)
-                SliderRow(title: "Размер", value: $model.card.titleSizePt, range: 8...60) { "\(Int($0)) pt" }
+                WideField(title: String(localized: "Текст заголовка"), text: $model.card.title, prompt: String(localized: "С днём рождения!"), lines: 1...3)
+                CardFontPicker(title: String(localized: "Шрифт"), name: $model.card.titleFont)
+                SliderRow(title: String(localized: "Размер"), value: $model.card.titleSizePt, range: 8...60) { "\(Int($0)) pt" }
                 Picker("Стиль", selection: $model.card.titleStyle) {
                     ForEach(CardTitleStyle.allCases) { Text($0.title).tag($0) }
                 }
             }
             Section("Текст") {
-                TextBox(text: $model.card.message, placeholder: "Пара тёплых слов…", minHeight: 76)
-                CardFontPicker(title: "Шрифт", name: $model.card.messageFont)
-                SliderRow(title: "Размер", value: $model.card.messageSizePt, range: 6...40) { "\(Int($0)) pt" }
+                TextBox(text: $model.card.message, placeholder: String(localized: "Пара тёплых слов…"), minHeight: 76)
+                CardFontPicker(title: String(localized: "Шрифт"), name: $model.card.messageFont)
+                SliderRow(title: String(localized: "Размер"), value: $model.card.messageSizePt, range: 6...40) { "\(Int($0)) pt" }
                 AlignPicker(align: $model.card.align)
             }
             Section("Подпись") {
-                WideField(title: "Внизу, мелко", text: $model.card.signature, prompt: "— с любовью, мама")
+                WideField(title: String(localized: "Внизу, мелко"), text: $model.card.signature, prompt: String(localized: "— с любовью, мама"))
             }
         }
         .formStyle(.grouped)
@@ -543,8 +543,8 @@ struct CardStylePane: View {
             }
 
             Section("Размер") {
-                MMField(title: "Длина", value: $model.card.lengthMM)
-                MMField(title: "Поля", value: $model.card.paddingMM, range: 0...15, zeroMeansAuto: false)
+                MMField(title: String(localized: "Длина"), value: $model.card.lengthMM)
+                MMField(title: String(localized: "Поля"), value: $model.card.paddingMM, range: 0...15, zeroMeansAuto: false)
                 Stepper("Одинаковых подряд: \(model.card.repeatCount)", value: $model.card.repeatCount, in: 1...20)
             }
         }
@@ -554,9 +554,9 @@ struct CardStylePane: View {
 
     private var kindHint: String {
         switch model.card.kind {
-        case .note: return "Записка: скотч сверху, линейки, текст слева — как листок для холодильника."
-        case .postcard: return "Открытка: рамка, украшения, заголовок по центру."
-        case .sticker: return "Стикер: картинка во всю ширину и контур, по которому удобно вырезать."
+        case .note: return String(localized: "Записка: скотч сверху, линейки, текст слева — как листок для холодильника.")
+        case .postcard: return String(localized: "Открытка: рамка, украшения, заголовок по центру.")
+        case .sticker: return String(localized: "Стикер: картинка во всю ширину и контур, по которому удобно вырезать.")
         }
     }
 }

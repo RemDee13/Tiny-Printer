@@ -7,14 +7,14 @@ public enum PrinterError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .bluetoothOff: return "Bluetooth выключен"
-        case .bluetoothDenied: return "Нет доступа к Bluetooth: Системные настройки → Конфиденциальность → Bluetooth"
-        case .notFound: return "Принтер не найден. Включите его и отключите от телефона (принтер держит одно подключение)"
-        case .unknownProtocol(let s): return "Неизвестный протокол принтера. GATT: \(s)"
-        case .disconnected: return "Принтер отключился"
-        case .timeout(let s): return "Принтер не ответил: \(s)"
-        case .busy: return "Принтер занят другой задачей"
-        case .write(let s): return "Ошибка передачи: \(s)"
+        case .bluetoothOff: return String(localized: "Bluetooth выключен", bundle: .tinyPrinter)
+        case .bluetoothDenied: return String(localized: "Нет доступа к Bluetooth: Системные настройки → Конфиденциальность → Bluetooth", bundle: .tinyPrinter)
+        case .notFound: return String(localized: "Принтер не найден. Включите его и отключите от телефона (принтер держит одно подключение)", bundle: .tinyPrinter)
+        case .unknownProtocol(let s): return String(localized: "Неизвестный протокол принтера. GATT: \(s)", bundle: .tinyPrinter)
+        case .disconnected: return String(localized: "Принтер отключился", bundle: .tinyPrinter)
+        case .timeout(let s): return String(localized: "Принтер не ответил: \(s)", bundle: .tinyPrinter)
+        case .busy: return String(localized: "Принтер занят другой задачей", bundle: .tinyPrinter)
+        case .write(let s): return String(localized: "Ошибка передачи: \(s)", bundle: .tinyPrinter)
         }
     }
 }
@@ -98,7 +98,7 @@ public final class BLEPrinter: NSObject, ObservableObject {
                 try await connect(to: p)
                 return
             } catch {
-                note("Сохранённый принтер не отвечает: \(error.localizedDescription). Ищу заново…")
+                note(String(localized: "Сохранённый принтер не отвечает: \(error.localizedDescription). Ищу заново…", bundle: .tinyPrinter))
             }
         }
         let found = try await scan(duration: 6, stopEarly: true)
@@ -158,9 +158,9 @@ public final class BLEPrinter: NSObject, ObservableObject {
         guard let driver else { throw PrinterError.disconnected }
         var steps: [JobStep] = []
         for _ in 0..<max(1, settings.copies) { steps += driver.printSteps(bitmap, settings: settings) }
-        note("Печать: \(bitmap.width)×\(bitmap.height) точек (\(String(format: "%.0f", Units.mm(dots: bitmap.height))) мм), копий: \(settings.copies)")
+        note(String(localized: "Печать: \(bitmap.width)×\(bitmap.height) точек (\(String(format: "%.0f", Units.mm(dots: bitmap.height))) мм), копий: \(settings.copies)", bundle: .tinyPrinter))
         try await run(steps)
-        note("Готово")
+        note(String(localized: "Готово", bundle: .tinyPrinter))
     }
 
     public func refreshStatus() async {
@@ -193,7 +193,7 @@ public final class BLEPrinter: NSObject, ObservableObject {
                 _ = try await waitNotification(label: label, timeout: timeout, match: match)
             case .maybeWait(let label, let timeout, let match):
                 do { _ = try await waitNotification(label: label, timeout: timeout, match: match) } catch PrinterError.timeout {
-                    note("Нет ответа: \(label), продолжаю")
+                    note(String(localized: "Нет ответа: \(label), продолжаю", bundle: .tinyPrinter))
                 }
             }
         }
@@ -221,26 +221,26 @@ public final class BLEPrinter: NSObject, ObservableObject {
     private func write(_ data: Data, to uuid: CBUUID, in service: CBUUID?, maxChunk: Int, delay: TimeInterval,
                        preferNoResponse: Bool, sent: (Int) -> Void) async throws {
         guard let p = peripheral, p.state == .connected else { throw PrinterError.disconnected }
-        guard let ch = characteristic(uuid, in: service) else { throw PrinterError.write("нет характеристики \(uuid)") }
+        guard let ch = characteristic(uuid, in: service) else { throw PrinterError.write(String(localized: "нет характеристики \(uuid)", bundle: .tinyPrinter)) }
         let noResp = ch.properties.contains(.writeWithoutResponse) && (preferNoResponse || !ch.properties.contains(.write))
         let type: CBCharacteristicWriteType = noResp ? .withoutResponse : .withResponse
         let chunk = max(20, min(maxChunk, p.maximumWriteValueLength(for: type)))
         var offset = 0
         while offset < data.count {
             if paused {
-                _ = try? await awaitPending(timeout: 15, label: "возобновление после паузы") { (w: Pending<Void>) in self.resumeWaiter = w }
+                _ = try? await awaitPending(timeout: 15, label: String(localized: "возобновление после паузы", bundle: .tinyPrinter)) { (w: Pending<Void>) in self.resumeWaiter = w }
                 paused = false
             }
             guard p.state == .connected else { throw PrinterError.disconnected }
             let piece = data.subdata(in: offset..<min(offset + chunk, data.count))
             if type == .withoutResponse {
                 if !p.canSendWriteWithoutResponse {
-                    _ = try await awaitPending(timeout: 5, label: "готовность к записи") { (w: Pending<Void>) in self.writeReady = w }
+                    _ = try await awaitPending(timeout: 5, label: String(localized: "готовность к записи", bundle: .tinyPrinter)) { (w: Pending<Void>) in self.writeReady = w }
                 }
                 p.writeValue(piece, for: ch, type: .withoutResponse)
             } else {
                 p.writeValue(piece, for: ch, type: .withResponse)
-                _ = try await awaitPending(timeout: 5, label: "подтверждение записи") { (w: Pending<Void>) in self.writeResponse = w }
+                _ = try await awaitPending(timeout: 5, label: String(localized: "подтверждение записи", bundle: .tinyPrinter)) { (w: Pending<Void>) in self.writeResponse = w }
             }
             offset += piece.count
             sent(piece.count)
@@ -261,17 +261,17 @@ public final class BLEPrinter: NSObject, ObservableObject {
     }
 
     private func connect(to p: CBPeripheral) async throws {
-        let name = p.name ?? seen[p.identifier]?.2 ?? "принтер"
+        let name = p.name ?? seen[p.identifier]?.2 ?? String(localized: "принтер", bundle: .tinyPrinter)
         state = .connecting(name)
-        note("Подключаюсь к \(name)…")
+        note(String(localized: "Подключаюсь к \(name)…", bundle: .tinyPrinter))
         peripheral = p
         p.delegate = self
         do {
-            try await awaitPending(timeout: 10, label: "подключение") { (w: Pending<Void>) in
+            try await awaitPending(timeout: 10, label: String(localized: "подключение", bundle: .tinyPrinter)) { (w: Pending<Void>) in
                 self.connectPending = w
                 self.central.connect(p)
             }
-            try await awaitPending(timeout: 10, label: "чтение GATT") { (w: Pending<Void>) in
+            try await awaitPending(timeout: 10, label: String(localized: "чтение GATT", bundle: .tinyPrinter)) { (w: Pending<Void>) in
                 self.gattPending = w
                 p.discoverServices(nil)
             }
@@ -304,7 +304,7 @@ public final class BLEPrinter: NSObject, ObservableObject {
         deviceName = name
         rememberedID = p.identifier
         state = .connected
-        note("Подключено: \(name), драйвер «\(type.displayName)», ширина \(d.widthDots) точек, MTU \(p.maximumWriteValueLength(for: .withoutResponse))")
+        note(String(localized: "Подключено: \(name), драйвер «\(type.displayName)», ширина \(d.widthDots) точек, MTU \(p.maximumWriteValueLength(for: .withoutResponse))", bundle: .tinyPrinter))
         try? await Task.sleep(nanoseconds: 200_000_000)
         await refreshStatus()
     }
@@ -313,7 +313,7 @@ public final class BLEPrinter: NSObject, ObservableObject {
     private func chooseDriver(_ gatt: DiscoveredGATT) async -> PrinterDriver.Type? {
         if !forcedDriverID.isEmpty, let t = DriverRegistry.driver(id: forcedDriverID) { return t }
         let ranked = DriverRegistry.ranked(for: gatt)
-        note("Кандидаты: " + ranked.map { "\($0.type.id)=\($0.score)" }.joined(separator: ", "))
+        note(String(localized: "Кандидаты: ", bundle: .tinyPrinter) + ranked.map { "\($0.type.id)=\($0.score)" }.joined(separator: ", "))
         guard let top = ranked.first else { return nil }
         let close = ranked.filter { top.score - $0.score < 30 }
         if close.count < 2 { return top.type }
@@ -323,11 +323,11 @@ public final class BLEPrinter: NSObject, ObservableObject {
             do {
                 try await write(probe.bytes, to: probe.write, in: probe.service, maxChunk: 180, delay: 0,
                                 preferNoResponse: true) { _ in }
-                let reply = try await waitNotification(label: "проба \(candidate.type.id)", timeout: probe.timeout, match: probe.match)
-                note("Проба \(candidate.type.id): ответ \(reply.hex)")
+                let reply = try await waitNotification(label: String(localized: "проба \(candidate.type.id)", bundle: .tinyPrinter), timeout: probe.timeout, match: probe.match)
+                note(String(localized: "Проба \(candidate.type.id): ответ \(reply.hex)", bundle: .tinyPrinter))
                 return candidate.type
             } catch {
-                note("Проба \(candidate.type.id): нет ответа")
+                note(String(localized: "Проба \(candidate.type.id): нет ответа", bundle: .tinyPrinter))
             }
         }
         return top.type
@@ -411,11 +411,11 @@ extension BLEPrinter: CBCentralManagerDelegate, CBPeripheralDelegate {
             guard !name.isEmpty || !services.isEmpty else { return }
             seen[p.identifier] = (p, RSSI.intValue, name, services)
             let likely = DriverRegistry.looksLikePrinter(name: name, advertised: services)
-            let c = Candidate(id: p.identifier, name: name.isEmpty ? "(без имени)" : name, rssi: RSSI.intValue, likelyPrinter: likely)
+            let c = Candidate(id: p.identifier, name: name.isEmpty ? String(localized: "(без имени)", bundle: .tinyPrinter) : name, rssi: RSSI.intValue, likelyPrinter: likely)
             candidates.removeAll { $0.id == c.id }
             candidates.append(c)
             candidates.sort { ($0.likelyPrinter ? 1 : 0, $0.rssi) > ($1.likelyPrinter ? 1 : 0, $1.rssi) }
-            if likely { note("Найден похожий принтер: \(c.name) (\(c.rssi) dBm) \(services.map(\.uuidString))") }
+            if likely { note(String(localized: "Найден похожий принтер: \(c.name) (\(c.rssi) dBm) \(services.map(\.uuidString).joined(separator: ", "))", bundle: .tinyPrinter)) }
         }
     }
 
@@ -432,7 +432,7 @@ extension BLEPrinter: CBCentralManagerDelegate, CBPeripheralDelegate {
     nonisolated public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral p: CBPeripheral, error: Error?) {
         MainActor.assumeIsolated {
             guard p.identifier == peripheral?.identifier else { return }
-            note("Отключено\(error.map { ": \($0.localizedDescription)" } ?? "")")
+            note(String(localized: "Отключено\(error.map { ": \($0.localizedDescription)" } ?? "")", bundle: .tinyPrinter))
             failAll(PrinterError.disconnected)
             peripheral = nil
             driver = nil
@@ -476,14 +476,14 @@ extension BLEPrinter: CBCentralManagerDelegate, CBPeripheralDelegate {
             if let event = driver?.handle(notification: data) {
                 switch event {
                 case .pause:
-                    if !paused { note("Принтер просит паузу") }
+                    if !paused { note(String(localized: "Принтер просит паузу", bundle: .tinyPrinter)) }
                     paused = true
                 case .resume:
                     paused = false
                     resumeWaiter?.succeed(); resumeWaiter = nil
                 case .status(let s):
                     status = s
-                    if !s.problems.isEmpty { note("Статус: " + s.problems.joined(separator: ", ")) }
+                    if !s.problems.isEmpty { note(String(localized: "Статус: ", bundle: .tinyPrinter) + s.problems.joined(separator: ", ")) }
                 }
             }
             if let i = notifyWaiters.firstIndex(where: { $0.match(data) }) {

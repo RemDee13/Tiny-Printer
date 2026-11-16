@@ -6,7 +6,7 @@ public struct PrintSettings: Codable, Equatable {
     public enum Paper: String, Codable, CaseIterable, Identifiable {
         case sticker, receipt
         public var id: String { rawValue }
-        public var title: String { self == .sticker ? "Стикер (самоклейка)" : "Чековая лента" }
+        public var title: String { self == .sticker ? String(localized: "Стикер (самоклейка)", bundle: .tinyPrinter) : String(localized: "Чековая лента", bundle: .tinyPrinter) }
     }
 
     public var paper: Paper = .sticker
@@ -60,10 +60,10 @@ public struct PrinterStatus: Equatable {
 
     public var problems: [String] {
         var p: [String] = []
-        if paperOut { p.append("нет бумаги") }
-        if coverOpen { p.append("открыта крышка") }
-        if overheated { p.append("перегрев") }
-        if lowBattery { p.append("разряжена батарея") }
+        if paperOut { p.append(String(localized: "нет бумаги", bundle: .tinyPrinter)) }
+        if coverOpen { p.append(String(localized: "открыта крышка", bundle: .tinyPrinter)) }
+        if overheated { p.append(String(localized: "перегрев", bundle: .tinyPrinter)) }
+        if lowBattery { p.append(String(localized: "разряжена батарея", bundle: .tinyPrinter)) }
         return p
     }
 }

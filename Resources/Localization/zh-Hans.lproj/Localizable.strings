@@ -1,0 +1,870 @@
+/* Tiny Printer UI strings. Keys are the Russian source strings from the code. */
+
+/* AIImage.swift:111 */
+"Квадрат" = "方形";
+/* AIImage.swift:111 */
+"Вертикально" = "纵向";
+/* AIImage.swift:111 */
+"Горизонтально" = "横向";
+/* AIImage.swift:125 */
+"Быстро и дёшево" = "快速且便宜";
+/* AIImage.swift:125 */
+"Средне" = "中等";
+/* AIImage.swift:125 */
+"Максимум" = "最佳";
+/* AIImage.swift:135 */
+"Контурный рисунок" = "线稿";
+/* AIImage.swift:136 */
+"Милый стикер" = "可爱贴纸";
+/* AIImage.swift:137 */
+"Дудл от руки" = "手绘涂鸦";
+/* AIImage.swift:138 */
+"Гравюра" = "木刻版画";
+/* AIImage.swift:139 */
+"Силуэт" = "剪影";
+/* AIImage.swift:140 */
+"Тату-флеш" = "纹身图样";
+/* AIImage.swift:141 */
+"Пиксель-арт" = "像素画";
+/* AIImage.swift:142 */
+"Как есть (фото, растр)" = "原样（照片，抖动）";
+/* AIImage.swift:210 */
+"Нет ключа API %@. Добавьте его в настройках (⌘,)." = "没有 %@ API 密钥。请在设置（⌘,）中添加。";
+/* AIImage.swift:211 */
+"Опишите, что нарисовать." = "请描述要画的内容。";
+/* AIImage.swift:214 */
+"Ключ не подошёл (%lld): %@" = "密钥被拒绝（%lld）：%@";
+/* AIImage.swift:215 */
+"Модель не найдена (%lld): %@. Обновите список моделей в настройках." = "未找到模型（%lld）：%@。请在设置中刷新模型列表。";
+/* AIImage.swift:216 */
+"Лимит запросов или закончились средства на счёте (%lld): %@" = "已达请求上限或余额不足（%lld）：%@";
+/* AIImage.swift:217 */
+"Ошибка сервиса (%lld): %@" = "服务出错（%lld）：%@";
+/* AIImage.swift:219 */
+"Модель не вернула картинку" = "模型未返回图片";
+/* AIImage.swift:220 */
+"Непонятный ответ сервиса." = "服务返回了无法识别的响应。";
+/* AIImage.swift:221 */
+"Модели Imagen не умеют перерисовывать картинку — выберите модель Gemini." = "Imagen 模型无法重绘图片——请选择 Gemini 模型。";
+/* AIImage.swift:420 */
+"запрос заблокирован (%@)" = "请求被拦截（%@）";
+/* AppModel.swift:12 */
+"Открытки" = "卡片";
+/* AppModel.swift:13 */
+"Надписи" = "标签";
+/* AppModel.swift:133 */
+"Картинка" = "图片";
+/* AppModel.swift:14 */
+"QR-коды" = "QR 码";
+/* AppModel.swift:15 */
+"Фото" = "照片";
+/* AppModel.swift:160 */
+"Локальный API (порт %u) не запустился: %@" = "本地 API（端口 %u）启动失败：%@";
+/* AppModel.swift:196 */
+"Нечего печатать" = "没有可打印的内容";
+/* AppModel.swift:20 */
+"Записки, открытки и стикеры" = "便条、贺卡和贴纸";
+/* AppModel.swift:209 */
+"Напечатано: %@, %lld мм" = "已打印：%@，%lld 毫米";
+/* AppModel.swift:21 */
+"Этикетки и длинные наклейки" = "标签和长贴纸";
+/* AppModel.swift:22 */
+"Ссылки, Wi‑Fi, контакты" = "链接、Wi‑Fi、联系人";
+/* AppModel.swift:23 */
+"Ч/б фото на ленте" = "纸带上的黑白照片";
+/* AppModel.swift:245 */
+"Виртуальный принтер: %@" = "虚拟打印机：%@";
+/* AppModel.swift:270 */
+"Без принтера" = "无打印机";
+/* AppModel.swift:272 */
+"Принтер не выбран" = "未选择打印机";
+/* AppModel.swift:272 */
+"Не подключён" = "未连接";
+/* AppModel.swift:273 */
+"Поиск…" = "正在搜索…";
+/* AppModel.swift:274 */
+"Подключение к %@…" = "正在连接 %@…";
+/* AppModel.swift:275 */
+"Подключён" = "已连接";
+/* AppModel.swift:276 */
+"Печать %lld%%" = "正在打印 %lld%%";
+/* AppModel.swift:277 */
+"Ошибка" = "错误";
+/* AppModel.swift:282 */
+"Сохраняю PNG в папку" = "正在将 PNG 存到文件夹";
+/* AppModel.swift:286 */
+"Включите принтер и нажмите «Подключить»" = "打开打印机并点按“连接”";
+/* AppModel.swift:286 */
+"Подключится сам при печати" = "打印时自动连接";
+/* AppModel.swift:307 */
+"Тестовая печать" = "测试打印";
+/* AppModel.swift:313 */
+"Не удалось открыть %@" = "无法打开 %@";
+/* AppModel.swift:338 */
+"Буфер: картинка" = "剪贴板：图片";
+/* AppModel.swift:342 */
+"Буфер: QR" = "剪贴板：QR";
+/* AppModel.swift:345 */
+"Буфер: текст" = "剪贴板：文本";
+/* AppModel.swift:348 */
+"В буфере нет текста или картинки" = "剪贴板上没有文本或图片";
+/* AppModel.swift:42 */
+"Bluetooth-принтер" = "蓝牙打印机";
+/* AppModel.swift:42 */
+"Виртуальный (PNG в папку)" = "虚拟（PNG 存到文件夹）";
+/* AppModel.swift:424 */
+"Сначала сохраните ключ." = "请先存储密钥。";
+/* AppModel.swift:433 */
+"Ключ работает. Модели %@ нет, выбрана %@." = "密钥有效。模型 %@ 不可用，已切换到 %@。";
+/* AppModel.swift:435 */
+"Ключ работает, но моделей для картинок не найдено." = "密钥有效，但未找到图像模型。";
+/* AppModel.swift:435 */
+"Ключ работает. Моделей для картинок: %lld." = "密钥有效。图像模型：%lld 个。";
+/* AppModel.swift:454 */
+"картинка" = "图片";
+/* AppModel.swift:459 */
+"перерисовка" = "重绘";
+/* AppModel.swift:461 */
+"Картинка готова · " = "图片已就绪 · ";
+/* AppModel.swift:503 */
+" · всего ≈ %@ за %lld шт." = " · 合计 ≈ %@（%lld 张）";
+/* AppModel.swift:504 */
+"Последняя: %@" = "上次：%@";
+/* AppModel.swift:539 */
+"Автозапуск: %@" = "登录时打开：%@";
+/* AppModel.swift:566 */
+"не удалось разобрать документ (нужен PDF или картинка)" = "无法读取文档（需要 PDF 或图片）";
+/* AppModel.swift:579 */
+"Системная печать" = "系统打印";
+/* AppModel.swift:579 */
+"API: документ" = "API：文档";
+/* AppModel.swift:592 */
+"нужен PNG" = "需要 PNG";
+/* AppModel.swift:63 */
+"%lld ток., цена модели неизвестна" = "%lld 个 token，模型价格未知";
+/* AppModel.swift:64 */
+"сервис не сообщил расход" = "服务未报告用量";
+/* BLEPrinter.swift:10 */
+"Bluetooth выключен" = "蓝牙已关闭";
+/* BLEPrinter.swift:101 */
+"Сохранённый принтер не отвечает: %@. Ищу заново…" = "已存储的打印机无响应：%@。正在重新搜索…";
+/* BLEPrinter.swift:11 */
+"Нет доступа к Bluetooth: Системные настройки → Конфиденциальность → Bluetooth" = "没有蓝牙访问权限：系统设置 → 隐私与安全性 → 蓝牙";
+/* BLEPrinter.swift:12 */
+"Принтер не найден. Включите его и отключите от телефона (принтер держит одно подключение)" = "未找到打印机。请打开打印机，并断开它与手机的连接（打印机仅允许一个连接）";
+/* BLEPrinter.swift:13 */
+"Неизвестный протокол принтера. GATT: %@" = "未知的打印机协议。GATT：%@";
+/* BLEPrinter.swift:14 */
+"Принтер отключился" = "打印机已断开连接";
+/* BLEPrinter.swift:15 */
+"Принтер не ответил: %@" = "打印机未响应：%@";
+/* BLEPrinter.swift:16 */
+"Принтер занят другой задачей" = "打印机正忙于其他任务";
+/* BLEPrinter.swift:161 */
+"Печать: %lld×%lld точек (%@ мм), копий: %lld" = "正在打印：%lld×%lld 点（%@ 毫米），份数：%lld";
+/* BLEPrinter.swift:163 */
+"Готово" = "完成";
+/* BLEPrinter.swift:17 */
+"Ошибка передачи: %@" = "传输错误：%@";
+/* BLEPrinter.swift:196 */
+"Нет ответа: %@, продолжаю" = "无应答：%@，继续";
+/* BLEPrinter.swift:224 */
+"нет характеристики %@" = "缺少特征 %@";
+/* BLEPrinter.swift:231 */
+"возобновление после паузы" = "暂停后继续";
+/* BLEPrinter.swift:238 */
+"готовность к записи" = "准备写入";
+/* BLEPrinter.swift:243 */
+"подтверждение записи" = "写入确认";
+/* BLEPrinter.swift:264 */
+"принтер" = "打印机";
+/* BLEPrinter.swift:266 */
+"Подключаюсь к %@…" = "正在连接 %@…";
+/* BLEPrinter.swift:270 */
+"подключение" = "连接中";
+/* BLEPrinter.swift:274 */
+"чтение GATT" = "读取 GATT";
+/* BLEPrinter.swift:307 */
+"Подключено: %@, драйвер «%@», ширина %lld точек, MTU %lld" = "已连接：%@，驱动程序“%@”，宽度 %lld 点，MTU %lld";
+/* BLEPrinter.swift:316 */
+"Кандидаты: " = "候选: ";
+/* BLEPrinter.swift:326 */
+"проба %@" = "探测 %@";
+/* BLEPrinter.swift:327 */
+"Проба %@: ответ %@" = "探测 %@：应答 %@";
+/* BLEPrinter.swift:330 */
+"Проба %@: нет ответа" = "探测 %@：无应答";
+/* BLEPrinter.swift:414 */
+"(без имени)" = "（无名称）";
+/* BLEPrinter.swift:418 */
+"Найден похожий принтер: %@ (%lld dBm) %@" = "发现疑似打印机：%@（%lld dBm）%@";
+/* BLEPrinter.swift:435 */
+"Отключено%@" = "已断开连接%@";
+/* BLEPrinter.swift:479 */
+"Принтер просит паузу" = "打印机请求暂停";
+/* BLEPrinter.swift:486 */
+"Статус: " = "状态: ";
+/* CardViews.swift:12 */
+"Шаблоны" = "模板";
+/* CardViews.swift:14 */
+"Текст" = "文字";
+/* CardViews.swift:15 */
+"Вид" = "设计";
+/* CardViews.swift:182 */
+"Показать" = "显示";
+/* CardViews.swift:183 */
+"Все" = "全部";
+/* CardViews.swift:191 */
+"Чистый лист" = "空白";
+/* CardViews.swift:206 */
+"Шаблон меняет текст и оформление, а вашу картинку оставляет." = "模板会更改文字和设计，但会保留你的图片。";
+/* CardViews.swift:281 */
+"Картинки нет — перетащите её на ленту или нарисуйте ниже" = "没有图片——将图片拖到纸带上，或在下方绘制";
+/* CardViews.swift:30 */
+"Записки" = "便条";
+/* CardViews.swift:30 */
+"Стикеры" = "贴纸";
+/* CardViews.swift:302 */
+"Нарисовать с AI" = "用 AI 绘制";
+/* CardViews.swift:309 */
+"Ключ, модель и расходы" = "密钥、模型和花费";
+/* CardViews.swift:312 */
+"Например: котик спит на стопке книг" = "例如：一只在书堆上睡觉的小猫";
+/* CardViews.swift:312 */
+"Что нарисовать" = "画什么";
+/* CardViews.swift:324 */
+"Перерисовать текущую картинку (фото → рисунок)" = "重绘当前图片（照片 → 绘画）";
+/* CardViews.swift:333 */
+"Рисую…" = "正在绘制…";
+/* CardViews.swift:333 */
+"Нарисовать" = "绘制";
+/* CardViews.swift:345 */
+"Нужен ключ API %@" = "需要 %@ API 密钥";
+/* CardViews.swift:347 */
+"Добавить ключ…" = "添加密钥…";
+/* CardViews.swift:37 */
+"Контур" = "线稿";
+/* CardViews.swift:373 */
+"всего ≈ %@" = "合计 ≈ %@";
+/* CardViews.swift:379 */
+"Нарисованные раньше" = "之前绘制的";
+/* CardViews.swift:38 */
+"Милый" = "可爱";
+/* CardViews.swift:380 */
+"Папка" = "文件夹";
+/* CardViews.swift:39 */
+"Дудл" = "涂鸦";
+/* CardViews.swift:396 */
+"Взять в открытку" = "用于贺卡";
+/* CardViews.swift:397 */
+"Показать в Finder" = "在访达中显示";
+/* CardViews.swift:399 */
+"В корзину" = "移到废纸篓";
+/* CardViews.swift:408 */
+"Как разместить картинку" = "图片摆放";
+/* CardViews.swift:412 */
+"Где" = "位置";
+/* CardViews.swift:419 */
+"Ширина" = "宽度";
+/* CardViews.swift:42 */
+"Тату" = "纹身";
+/* CardViews.swift:427 */
+"Точки" = "点阵";
+/* CardViews.swift:428 */
+"Растрирование" = "抖动";
+/* CardViews.swift:429 */
+"Авто" = "自动";
+/* CardViews.swift:43 */
+"Пиксели" = "像素";
+/* CardViews.swift:436 */
+"Обрезать белые поля" = "裁掉白边";
+/* CardViews.swift:452 */
+"Из буфера обмена" = "从剪贴板";
+/* CardViews.swift:454 */
+"В буфере нет картинки" = "剪贴板上没有图片";
+/* CardViews.swift:466 */
+"Заголовок" = "标题";
+/* CardViews.swift:467 */
+"Текст заголовка" = "标题文字";
+/* CardViews.swift:467 */
+"С днём рождения!" = "生日快乐！";
+/* CardViews.swift:468 */
+"Шрифт" = "字体";
+/* CardViews.swift:469 */
+"Размер" = "大小";
+/* CardViews.swift:470 */
+"Стиль" = "样式";
+/* CardViews.swift:475 */
+"Пара тёплых слов…" = "写几句暖心话…";
+/* CardViews.swift:480 */
+"Подпись" = "署名";
+/* CardViews.swift:481 */
+"Внизу, мелко" = "位于底部，小字";
+/* CardViews.swift:481 */
+"— с любовью, мама" = "—— 爱你的妈妈";
+/* CardViews.swift:509 */
+"Тип" = "类型";
+/* CardViews.swift:518 */
+"Рамка" = "边框";
+/* CardViews.swift:527 */
+"Украшения" = "装饰";
+/* CardViews.swift:528 */
+"Узор" = "图案";
+/* CardViews.swift:532 */
+"Повторить внизу" = "在底部重复";
+/* CardViews.swift:534 */
+"Полоска скотча сверху" = "顶部胶带条";
+/* CardViews.swift:537 */
+"Бумага" = "纸张";
+/* CardViews.swift:538 */
+"Линейки для письма" = "书写横线";
+/* CardViews.swift:540 */
+"Пустых строк: %lld" = "空白行：%lld";
+/* CardViews.swift:542 */
+"Контур для вырезания" = "剪裁轮廓";
+/* CardViews.swift:546 */
+"Длина" = "长度";
+/* CardViews.swift:547 */
+"Поля" = "边距";
+/* CardViews.swift:548 */
+"Одинаковых подряд: %lld" = "连续重复：%lld";
+/* CardViews.swift:557 */
+"Записка: скотч сверху, линейки, текст слева — как листок для холодильника." = "便条：顶部胶带、书写横线、文字靠左——就像贴在冰箱上的便签。";
+/* CardViews.swift:558 */
+"Открытка: рамка, украшения, заголовок по центру." = "贺卡：边框、装饰、居中标题。";
+/* CardViews.swift:559 */
+"Стикер: картинка во всю ширину и контур, по которому удобно вырезать." = "贴纸：通栏图片，外加便于沿线剪下的轮廓。";
+/* Cards.swift:100 */
+"От руки (Bradley)" = "手写（Bradley）";
+/* Cards.swift:101 */
+"Мелом (Chalkboard)" = "粉笔（Chalkboard）";
+/* Cards.swift:102 */
+"Маркер" = "马克笔";
+/* Cards.swift:104 */
+"Печатная машинка" = "打字机";
+/* Cards.swift:105 */
+"Классика (Georgia)" = "经典（Georgia）";
+/* Cards.swift:107 */
+"Гравировка (Copperplate)" = "雕刻（Copperplate）";
+/* Cards.swift:108 */
+"Афиша (Phosphate)" = "海报（Phosphate）";
+/* Cards.swift:109 */
+"Сказочный (Luminari)" = "童话（Luminari）";
+/* Cards.swift:110 */
+"Средневековый" = "中世纪";
+/* Cards.swift:111 */
+"Жирный гротеск" = "粗黑体";
+/* Cards.swift:130 */
+"Пусть всё задуманное сбудется!" = "愿你心想事成！";
+/* Cards.swift:14 */
+"Записка" = "便条";
+/* Cards.swift:14 */
+"Открытка" = "贺卡";
+/* Cards.swift:14 */
+"Стикер" = "贴纸";
+/* Cards.swift:26 */
+"Без рамки" = "无边框";
+/* Cards.swift:27 */
+"Линия" = "线条";
+/* Cards.swift:28 */
+"Двойная" = "双线";
+/* Cards.swift:29 */
+"Скруглённая" = "圆角";
+/* Cards.swift:30 */
+"Пунктир (линия отреза)" = "虚线（裁切线）";
+/* Cards.swift:315 */
+"котик спит, свернувшись клубочком" = "一只蜷成一团熟睡的小猫";
+/* Cards.swift:317 */
+"Не забудь покормить кота!" = "别忘了喂猫！";
+/* Cards.swift:32 */
+"Волна" = "波浪";
+/* Cards.swift:320 */
+"Список дел" = "待办清单";
+/* Cards.swift:322 */
+"Сделать:" = "待办：";
+/* Cards.swift:325 */
+"День рождения" = "生日";
+/* Cards.swift:325 */
+"праздничный торт со свечками и воздушные шарики" = "插着蜡烛的生日蛋糕和气球";
+/* Cards.swift:33 */
+"Зубчики (марка)" = "齿孔（邮票）";
+/* Cards.swift:331 */
+"Спасибо" = "感谢";
+/* Cards.swift:331 */
+"букет полевых цветов" = "一束野花";
+/* Cards.swift:333 */
+"Спасибо!" = "谢谢！";
+/* Cards.swift:334 */
+"Ты лучше всех" = "你是最棒的";
+/* Cards.swift:337 */
+"Люблю" = "爱";
+/* Cards.swift:337 */
+"два котика обнимаются, вокруг сердечки" = "两只相拥的小猫，周围满是爱心";
+/* Cards.swift:339 */
+"Люблю тебя" = "爱你";
+/* Cards.swift:34 */
+"Билетик" = "票券";
+/* Cards.swift:342 */
+"Новый год" = "新年";
+/* Cards.swift:342 */
+"наряженная ёлка с подарками" = "挂满装饰的圣诞树和礼物";
+/* Cards.swift:344 */
+"С Новым годом!" = "新年快乐！";
+/* Cards.swift:345 */
+"Счастья, тепла и чудес" = "幸福、温暖与惊喜";
+/* Cards.swift:348 */
+"Купон" = "兑换券";
+/* Cards.swift:35 */
+"Уголки" = "角饰";
+/* Cards.swift:350 */
+"КУПОН" = "兑换券";
+/* Cards.swift:351 */
+"на одни обнимашки\nвне очереди" = "可兑换一个拥抱\n免排队";
+/* Cards.swift:352 */
+"Действителен всегда" = "永久有效";
+/* Cards.swift:354 */
+"милый котик машет лапкой" = "一只挥着爪子的可爱小猫";
+/* Cards.swift:357 */
+"Стикер + надпись" = "贴纸 + 文字";
+/* Cards.swift:357 */
+"улыбающееся солнышко" = "微笑的太阳";
+/* Cards.swift:359 */
+"Привет!" = "你好！";
+/* Cards.swift:36 */
+"Сердечки" = "爱心";
+/* Cards.swift:37 */
+"Звёздочки" = "小星星";
+/* Cards.swift:38 */
+"Снежинки" = "雪花";
+/* Cards.swift:59 */
+"Нет" = "无";
+/* Cards.swift:61 */
+"Звёзды" = "星星";
+/* Cards.swift:62 */
+"Искорки" = "闪光";
+/* Cards.swift:63 */
+"Цветочки" = "小花";
+/* Cards.swift:65 */
+"Линия с ромбом" = "带菱形的线";
+/* Cards.swift:76 */
+"Обычный" = "普通";
+/* Cards.swift:77 */
+"Лента (белым по чёрному)" = "横幅（黑底白字）";
+/* Cards.swift:78 */
+"С росчерком снизу" = "花式下划线";
+/* Cards.swift:87 */
+"В начале" = "开头";
+/* Cards.swift:87 */
+"После заголовка" = "标题后";
+/* Cards.swift:87 */
+"В конце" = "结尾";
+/* Cards.swift:94 */
+"Системный" = "系统";
+/* Cards.swift:95 */
+"Каллиграфия (Snell)" = "书法（Snell）";
+/* Cards.swift:96 */
+"Каллиграфия, жирная" = "书法，粗体";
+/* Cards.swift:97 */
+"Изящный (Savoye)" = "优雅（Savoye）";
+/* Cards.swift:98 */
+"Вывеска (SignPainter)" = "招牌手绘（SignPainter）";
+/* Cards.swift:99 */
+"От руки (Noteworthy)" = "手写（Noteworthy）";
+/* DocumentRenderer.swift:10 */
+"Текст / QR" = "文本 / QR";
+/* Driver.swift:63 */
+"нет бумаги" = "缺纸";
+/* Driver.swift:64 */
+"открыта крышка" = "盖子未关";
+/* Driver.swift:65 */
+"перегрев" = "过热";
+/* Driver.swift:66 */
+"разряжена батарея" = "电量低";
+/* Driver.swift:9 */
+"Стикер (самоклейка)" = "贴纸（不干胶）";
+/* Driver.swift:9 */
+"Чековая лента" = "小票纸";
+/* EscPos.swift:112 */
+"окончание печати" = "打印结束";
+/* EscPos.swift:137 */
+"ESC/POS (универсальный)" = "ESC/POS（通用）";
+/* GrayImage.swift:10 */
+"Порог (текст, QR)" = "阈值（文本、QR）";
+/* GrayImage.swift:11 */
+"Флойд–Стейнберг" = "Floyd–Steinberg";
+/* GrayImage.swift:12 */
+"Аткинсон (фото)" = "Atkinson（照片）";
+/* GrayImage.swift:13 */
+"Растр (Байер)" = "有序（Bayer）";
+/* Keychain.swift:29 */
+"Tiny Printer: ключ API %@" = "Tiny Printer：%@ API 密钥";
+/* Keychain.swift:44 */
+"Связка ключей: " = "钥匙串: ";
+/* Keychain.swift:44 */
+"код %d" = "代码 %d";
+/* Labels.swift:116 */
+"QR: пусто" = "QR：空";
+/* Labels.swift:80 */
+"QR сверху, подпись снизу" = "QR 在上，说明在下";
+/* Labels.swift:80 */
+"QR слева, подпись справа" = "QR 在左，说明在右";
+/* MXW01.swift:61 */
+"статус MXW01" = "MXW01 状态";
+/* MXW01.swift:63 */
+"разрешение печати" = "打印许可";
+/* MainWindow.swift:121 */
+"Создать" = "创建";
+/* MainWindow.swift:180 */
+"Принтер" = "打印机";
+/* MainWindow.swift:230 */
+"Заряд" = "电量";
+/* MainWindow.swift:237 */
+"Открыть папку" = "打开文件夹";
+/* MainWindow.swift:239 */
+"Отключить" = "断开连接";
+/* MainWindow.swift:241 */
+"Подключить" = "连接";
+/* MainWindow.swift:250 */
+"Куда печатать" = "打印到";
+/* MainWindow.swift:252 */
+"PNG в папку" = "PNG 存到文件夹";
+/* MainWindow.swift:254 */
+"Плотность" = "浓度";
+/* MainWindow.swift:265 */
+"Настройки принтера…" = "打印机设置…";
+/* MainWindow.swift:30 */
+"Скрыть настройки макета" = "隐藏版面设置";
+/* MainWindow.swift:30 */
+"Показать настройки макета" = "显示版面设置";
+/* MainWindow.swift:32 */
+"Настройки макета (⌃⌘I)" = "版面设置（⌃⌘I）";
+/* MainWindow.swift:52 */
+"57 мм" = "57 mm";
+/* MainWindow.swift:54 */
+" · %lld шт. = %lld мм" = " · %lld 张 = %lld mm";
+/* MainWindow.swift:55 */
+"57 × %lld мм" = "57 × %lld mm";
+/* MainWindow.swift:79 */
+"Напечатать (⌘P)" = "打印（⌘P）";
+/* MainWindow.swift:89 */
+"Печать…" = "正在打印…";
+/* MainWindow.swift:90 */
+"Печать × %lld" = "打印 × %lld";
+/* MainWindow.swift:90 */
+"Печать" = "打印";
+/* PreviewCanvas.swift:102 */
+"Масштаб" = "缩放";
+/* PreviewCanvas.swift:109 */
+"Чек" = "小票";
+/* PreviewCanvas.swift:114 */
+"Бумага в принтере: самоклейка или чековая лента" = "打印机中的纸张：不干胶贴纸或小票纸";
+/* PreviewCanvas.swift:121 */
+"Копий" = "份数";
+/* PreviewCanvas.swift:123 */
+"Сколько копий напечатать" = "要打印的份数";
+/* PreviewCanvas.swift:154 */
+"Выберите шаблон, напишите пару слов или нарисуйте картинку с AI." = "选择模板、写几句话，或用 AI 画一张图。";
+/* PreviewCanvas.swift:167 */
+"Фото не выбрано" = "未选择照片";
+/* PreviewCanvas.swift:169 */
+"Перетащите фото сюда или вставьте из буфера обмена — приложение переведёт его в точки для термопечати." = "将照片拖到此处或从剪贴板粘贴——应用会将其转换为适合热敏打印的点阵。";
+/* PreviewCanvas.swift:172 */
+"Вставить" = "粘贴";
+/* PreviewCanvas.swift:173 */
+"Выбрать фото…" = "选择照片…";
+/* PreviewCanvas.swift:179 */
+"Здесь появится надпись" = "你的标签将显示在这里";
+/* PreviewCanvas.swift:180 */
+"Напишите текст в панели справа." = "在右侧面板中输入文字。";
+/* PreviewCanvas.swift:182 */
+"Нет содержимого" = "暂无内容";
+/* PreviewCanvas.swift:183 */
+"Вставьте ссылку или текст в панели справа." = "在右侧面板中粘贴链接或文本。";
+/* PreviewCanvas.swift:199 */
+"Перетащенная картинка" = "拖入的图片";
+/* PreviewCanvas.swift:250 */
+"Превью печати" = "打印预览";
+/* PreviewCanvas.swift:344 */
+"Рисую картинку…" = "正在绘制图片…";
+/* PreviewCanvas.swift:346 */
+"%lld с · обычно 15–40 с" = "%lld 秒 · 通常需要 15–40 秒";
+/* PreviewCanvas.swift:52 */
+"Картинка для открытки" = "贺卡图片";
+/* PreviewCanvas.swift:52 */
+"Открыть фото" = "打开照片";
+/* PreviewCanvas.swift:81 */
+"Уменьшить" = "缩小";
+/* PreviewCanvas.swift:83 */
+"По ширине окна" = "适合窗口";
+/* PreviewCanvas.swift:89 */
+"Вписать" = "适合";
+/* PreviewCanvas.swift:96 */
+"Увеличить" = "放大";
+/* SettingsViews.swift:115 */
+"Устройства рядом" = "附近的设备";
+/* SettingsViews.swift:118 */
+"Искать" = "搜索";
+/* SettingsViews.swift:123 */
+"Принтер держит одно подключение: если он подключён к телефону, отключите его там." = "打印机仅允许一个连接：如果它已连接到手机，请在手机上断开。";
+/* SettingsViews.swift:128 */
+"Протокол" = "协议";
+/* SettingsViews.swift:129 */
+"Определять автоматически" = "自动检测";
+/* SettingsViews.swift:134 */
+"GATT-профиль устройства" = "设备 GATT 配置文件";
+/* SettingsViews.swift:139 */
+"Для опытных" = "高级";
+/* SettingsViews.swift:141 */
+"Менять протокол нужно, только если принтер подключается, но не печатает." = "仅当打印机能连接但不打印时才更改协议。";
+/* SettingsViews.swift:157 */
+"Приложение" = "应用";
+/* SettingsViews.swift:158 */
+"Оформление" = "外观";
+/* SettingsViews.swift:165 */
+"Запускать при входе в систему" = "登录时打开";
+/* SettingsViews.swift:176 */
+"Прогон после печати" = "打印后走纸";
+/* SettingsViews.swift:180 */
+"Плотность: 1 — светлее, 5 — темнее. Самоклейке обычно нужно на шаг темнее, чем чековой ленте. Прогон — чтобы край вышел за нож." = "浓度：1 最浅，5 最深。不干胶贴纸通常需要比小票纸深一档。走纸可让纸边越过撕纸口。";
+/* SettingsViews.swift:186 */
+"Принтер «Tiny Printer» в системе" = "“Tiny Printer”系统打印机";
+/* SettingsViews.swift:188 */
+"Выбирайте его в ⌘P любого приложения. Размеры бумаги: 57×20…150 мм и свой." = "在任意应用中按 ⌘P 选择它。纸张尺寸：57×20…150 毫米及自定尺寸。";
+/* SettingsViews.swift:189 */
+"Добавит принтер в список macOS (без пароля, только для этого Mac)." = "将打印机添加到 macOS（无需密码，仅限这台 Mac）。";
+/* SettingsViews.swift:192 */
+"Не удалось: %@" = "失败：%@";
+/* SettingsViews.swift:197 */
+"Пункт в меню «PDF» диалога печати" = "打印对话框“PDF”菜单中的项目";
+/* SettingsViews.swift:198 */
+"Запасной путь: ⌘P → PDF → «Печать на Tiny Printer»." = "备用方法：⌘P → PDF → “使用 Tiny Printer 打印”。";
+/* SettingsViews.swift:205 */
+"Служба печати" = "打印服务";
+/* SettingsViews.swift:208 */
+"работает · ipp://localhost:%lld" = "运行中 · ipp://localhost:%lld";
+/* SettingsViews.swift:208 */
+"остановлена" = "已停止";
+/* SettingsViews.swift:214 */
+"Печать из других приложений" = "从其他应用打印";
+/* SettingsViews.swift:217 */
+"Как печатать документы" = "打印文稿";
+/* SettingsViews.swift:218 */
+"Страницы" = "页面";
+/* SettingsViews.swift:22 */
+"Основные" = "通用";
+/* SettingsViews.swift:221 */
+"Фото в документах" = "文稿中的照片";
+/* SettingsViews.swift:224 */
+"Обрезать пустое место внизу страницы" = "裁掉页面底部的空白";
+/* SettingsViews.swift:242 */
+"Убрать" = "移除";
+/* SettingsViews.swift:242 */
+"Добавить" = "添加";
+/* SettingsViews.swift:28 */
+"Журнал" = "日志";
+/* SettingsViews.swift:306 */
+"Последние задания" = "最近的任务";
+/* SettingsViews.swift:308 */
+"Пока ничего не печаталось." = "尚未打印任何内容。";
+/* SettingsViews.swift:316 */
+"%lld мм" = "%lld mm";
+/* SettingsViews.swift:326 */
+"Журнал пуст." = "日志为空。";
+/* SettingsViews.swift:334 */
+"Журнал Bluetooth" = "蓝牙日志";
+/* SettingsViews.swift:336 */
+"Скопировать" = "拷贝";
+/* SettingsViews.swift:340 */
+"Журнал скопирован" = "已拷贝日志";
+/* SettingsViews.swift:345 */
+"Пригодится, если принтер не печатает: журнал и GATT-профиль помогут подобрать протокол." = "打印机不打印时很有用：日志和 GATT 配置文件有助于选择正确的协议。";
+/* SettingsViews.swift:367 */
+"Сервис" = "服务";
+/* SettingsViews.swift:372 */
+"Картинки для открыток и стикеров рисует выбранный сервис по вашему ключу API; оплата — по тарифам сервиса. Надписи приложение набирает само." = "贺卡和贴纸的图片由所选服务使用你的 API 密钥绘制，按该服务的价格计费。所有文字由应用自行排版。";
+/* SettingsViews.swift:376 */
+"Ключ API %@" = "%@ API 密钥";
+/* SettingsViews.swift:378 */
+"Сохранён" = "已存储";
+/* SettingsViews.swift:382 */
+"Удалить" = "删除";
+/* SettingsViews.swift:389 */
+"Вставьте ключ" = "粘贴密钥";
+/* SettingsViews.swift:389 */
+"Заменить ключ" = "替换密钥";
+/* SettingsViews.swift:392 */
+"Сохранить и проверить" = "存储并检查";
+/* SettingsViews.swift:395 */
+"Проверить" = "检查";
+/* SettingsViews.swift:399 */
+"Где взять ключ →" = "获取密钥 →";
+/* SettingsViews.swift:405 */
+"Ключ хранится в Связке ключей macOS и отправляется только на %@." = "密钥存储在 macOS 钥匙串中，仅发送给 %@。";
+/* SettingsViews.swift:409 */
+"Модель" = "模型";
+/* SettingsViews.swift:413 */
+"Или впишите название" = "或输入名称";
+/* SettingsViews.swift:414 */
+"Обновить список с сервера" = "从服务器刷新列表";
+/* SettingsViews.swift:417 */
+"Качество" = "质量";
+/* SettingsViews.swift:421 */
+"Формат" = "画幅";
+/* SettingsViews.swift:424 */
+"Без надписей на картинке" = "图片中不含文字";
+/* SettingsViews.swift:428 */
+"Нарисовано картинок" = "已绘制图片";
+/* SettingsViews.swift:429 */
+"Потрачено (оценка)" = "已花费（估算）";
+/* SettingsViews.swift:431 */
+"Последняя" = "上次";
+/* SettingsViews.swift:434 */
+"Сбросить счётчик" = "重置计数";
+/* SettingsViews.swift:436 */
+"Точные расходы в кабинете %@ →" = "在 %@ 账户中查看准确花费 →";
+/* SettingsViews.swift:439 */
+"Расходы" = "花费";
+/* SettingsViews.swift:441 */
+"Оценка по токенам из ответа сервиса и прайсу на ноябрь 2026. Сколько списано на самом деле — в кабинете сервиса." = "根据服务响应中的 token 数和 2026 年 11 月的价格估算。实际扣费请在服务账户中查看。";
+/* SettingsViews.swift:75 */
+"Забыть принтер" = "忘记打印机";
+/* SettingsViews.swift:86 */
+"Задания сохраняются как PNG — удобно проверять макеты без принтера." = "任务会存储为 PNG——无需打印机也能检查版面。";
+/* SettingsViews.swift:96 */
+"Ищу устройства…" = "正在搜索设备…";
+/* SettingsViews.swift:96 */
+"Нажмите «Искать», чтобы увидеть устройства рядом." = "点按“搜索”以查看附近的设备。";
+/* SystemPrinter.swift:129 */
+"Bluetooth, 57 мм" = "蓝牙，57 毫米";
+/* SystemPrinter.swift:133 */
+"lpadmin завершился с кодом %d" = "lpadmin 已退出，代码 %d";
+/* SystemPrinter.swift:159 */
+"Печать на Tiny Printer" = "使用 Tiny Printer 打印";
+/* SystemPrinter.swift:70 */
+"ippeveprinter падает при запуске (код %d)" = "ippeveprinter 启动时崩溃（代码 %d）";
+/* Theme.swift:195 */
+"Как в системе" = "跟随系统";
+/* Theme.swift:196 */
+"Светлое" = "浅色";
+/* Theme.swift:197 */
+"Тёмное" = "深色";
+/* TinyPrinterApp.swift:19 */
+"Печать из буфера обмена" = "从剪贴板打印";
+/* TinyPrinterApp.swift:57 */
+"Открыть Tiny Printer" = "打开 Tiny Printer";
+/* TinyPrinterApp.swift:62 */
+"Отключить принтер" = "断开打印机";
+/* TinyPrinterApp.swift:62 */
+"Подключить принтер" = "连接打印机";
+/* TinyPrinterApp.swift:66 */
+"Настройки…" = "设置…";
+/* TinyPrinterApp.swift:68 */
+"Выйти" = "退出";
+/* Views.swift:110 */
+"Системный (SF)" = "系统（SF）";
+/* Views.swift:145 */
+"Файл…" = "文件…";
+/* Views.swift:148 */
+"Убрать картинку" = "移除图片";
+/* Views.swift:167 */
+"Например: Специи" = "例如：香料";
+/* Views.swift:172 */
+"Жирный" = "粗体";
+/* Views.swift:177 */
+"Белым по чёрному" = "黑底白字";
+/* Views.swift:180 */
+"Вдоль ленты" = "沿纸带方向";
+/* Views.swift:182 */
+"Растянуть на всю ширину ленты" = "拉伸至纸带全宽";
+/* Views.swift:187 */
+"Этикетка" = "标签";
+/* Views.swift:189 */
+"«Вдоль ленты» — длинная наклейка: текст идёт по длине рулона, например для корешков папок и проводов." = "“沿纸带方向”可制作长贴纸：文字沿纸卷排列——适合文件夹脊和线缆。";
+/* Views.swift:207 */
+"Ссылка или текст" = "链接或文本";
+/* Views.swift:21 */
+"мм (авто)" = "mm（自动）";
+/* Views.swift:21 */
+"мм" = "mm";
+/* Views.swift:212 */
+"Что в QR-коде" = "QR 码内容";
+/* Views.swift:222 */
+"Сеть (SSID)" = "网络（SSID）";
+/* Views.swift:223 */
+"Пароль" = "密码";
+/* Views.swift:224 */
+"Собрать QR для Wi‑Fi" = "生成 Wi‑Fi QR 码";
+/* Views.swift:228 */
+"Первая строка — жирная" = "首行加粗";
+/* Views.swift:230 */
+"Расположение" = "布局";
+/* Views.swift:235 */
+"Сторона QR" = "QR 尺寸";
+/* Views.swift:236 */
+"Длина этикетки" = "标签长度";
+/* Views.swift:237 */
+"Запас на повреждения" = "纠错级别";
+/* Views.swift:238 */
+"L — мельче" = "L — 更小";
+/* Views.swift:239 */
+"M — обычно" = "M — 标准";
+/* Views.swift:241 */
+"H — надёжнее" = "H — 更可靠";
+/* Views.swift:266 */
+"Перетащите фото на ленту" = "将照片拖到纸带上";
+/* Views.swift:274 */
+"Яркость" = "亮度";
+/* Views.swift:275 */
+"Контраст" = "对比度";
+/* Views.swift:276 */
+"Гамма" = "伽马";
+/* Views.swift:277 */
+"Резкость" = "锐度";
+/* Views.swift:278 */
+"Негатив" = "负片";
+/* Views.swift:279 */
+"Сбросить настройки" = "重置设置";
+/* Views.swift:287 */
+"Повернуть на 90°" = "旋转 90°";
+/* Views.swift:288 */
+"Макс. длина" = "最大长度";
+/* Views.swift:52 */
+"Выравнивание" = "对齐";
+/* main.swift:101 */
+"Не удалось записать %@: %@" = "无法写入 %@：%@";
+/* main.swift:102 */
+"Превью: %@ (%lld×%lld точек, %lld мм)" = "预览：%@（%lld×%lld 点，%lld 毫米）";
+/* main.swift:106 */
+"Приложение Tiny Printer не запущено (нет ответа на 127.0.0.1:8614)" = "Tiny Printer 未运行（127.0.0.1:8614 无响应）";
+/* main.swift:109 */
+"Напечатано: %lld мм" = "已打印：%lld 毫米";
+/* main.swift:114 */
+"Приложение Tiny Printer не запущено" = "Tiny Printer 未运行";
+/* main.swift:122 */
+"Укажите текст: tinyprint text \"Привет\"" = "请提供文本：tinyprint text \"你好\"";
+/* main.swift:137 */
+"Укажите содержимое: tinyprint qr \"https://…\"" = "请提供内容：tinyprint qr \"https://…\"";
+/* main.swift:147 */
+"Не удалось открыть картинку" = "无法打开图片";
+/* main.swift:161 */
+"Не удалось прочитать файл" = "无法读取文件";
+/* main.swift:176 */
+"Ошибка: " = "错误: ";
+/* main.swift:182 */
+"Шаблоны:  " = "模板: ";
+/* main.swift:183 */
+"Рамки:    " = "边框: ";
+/* main.swift:184 */
+"Украшения: " = "装饰: ";
+/* main.swift:189 */
+"Нет шаблона %@. tinyprint card --list" = "没有名为 %@ 的模板。tinyprint card --list";
+/* main.swift:197 */
+"Нет рамки %@. tinyprint card --list" = "没有名为 %@ 的边框。tinyprint card --list";
+/* main.swift:201 */
+"Нет украшения %@. tinyprint card --list" = "没有名为 %@ 的装饰。tinyprint card --list";
+/* main.swift:209 */
+"Не удалось открыть картинку %@" = "无法打开图片 %@";
+/* main.swift:8 */
+"tinyprint — печать на Tiny Printer из терминала\n\n  tinyprint status\n  tinyprint log                         журнал подключения и GATT-профиль принтера\n  tinyprint text \"Текст\" [--size 24] [--along] [--length 40] [--left|--right] [--regular] [--border] [--invert] [--font Name]\n  tinyprint qr \"https://…\" [--caption \"Подпись\"] [--side] [--qr-size 30] [--length 40]\n  tinyprint image фото.jpg [--dither atkinson|floyd|ordered|threshold] [--rotate] [--width 100] [--max-length 80]\n  tinyprint file документ.pdf [--mode auto|text|photo] [--trim]\n  tinyprint card [--preset birthday] [--title \"…\"] [--message \"…\"] [--signature \"…\"] [--image файл.png]\n                 [--frame scallop] [--ornament stars] [--cut] [--length 80] [--repeat 3]\n  tinyprint card --list                 шаблоны, рамки и украшения\n\nОбщие опции:\n  --preview out.png     не печатать, сохранить PNG того, что напечатается\n  --copies N            копий (по умолчанию 1)\n  --density 1…5         плотность (по умолчанию — из настроек приложения)\n  --paper sticker|receipt" = "tinyprint — 在终端中使用 Tiny Printer 打印\n\n  tinyprint status\n  tinyprint log                         连接日志和打印机的 GATT 配置文件\n  tinyprint text \"文本\" [--size 24] [--along] [--length 40] [--left|--right] [--regular] [--border] [--invert] [--font 字体名]\n  tinyprint qr \"https://…\" [--caption \"说明\"] [--side] [--qr-size 30] [--length 40]\n  tinyprint image photo.jpg [--dither atkinson|floyd|ordered|threshold] [--rotate] [--width 100] [--max-length 80]\n  tinyprint file document.pdf [--mode auto|text|photo] [--trim]\n  tinyprint card [--preset birthday] [--title \"…\"] [--message \"…\"] [--signature \"…\"] [--image file.png]\n                 [--frame scallop] [--ornament stars] [--cut] [--length 80] [--repeat 3]\n  tinyprint card --list                 模板、边框和装饰\n\n通用选项：\n  --preview out.png     不打印，将要打印的内容存储为 PNG\n  --copies N            份数（默认为 1）\n  --density 1…5         打印浓度（默认取自应用设置）\n  --paper sticker|receipt";
+/* main.swift:98 */
+"Пустая этикетка" = "空标签";

@@ -7,10 +7,10 @@ public enum DitherMethod: String, CaseIterable, Codable, Identifiable {
     public var id: String { rawValue }
     public var title: String {
         switch self {
-        case .threshold: return "Порог (текст, QR)"
-        case .floydSteinberg: return "Флойд–Стейнберг"
-        case .atkinson: return "Аткинсон (фото)"
-        case .ordered: return "Растр (Байер)"
+        case .threshold: return String(localized: "Порог (текст, QR)", bundle: .tinyPrinter)
+        case .floydSteinberg: return String(localized: "Флойд–Стейнберг", bundle: .tinyPrinter)
+        case .atkinson: return String(localized: "Аткинсон (фото)", bundle: .tinyPrinter)
+        case .ordered: return String(localized: "Растр (Байер)", bundle: .tinyPrinter)
         }
     }
 }

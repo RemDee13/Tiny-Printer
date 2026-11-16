@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="assets/readme/hero.svg" width="100%" alt="Tiny Printer — наклейки, открытки и QR-коды на маленьком Bluetooth-термопринтере прямо с Mac, как на обычном принтере">
+  <img src="assets/readme/hero.svg" width="100%" alt="Tiny Printer: stickers, cards and QR codes on a tiny Bluetooth thermal printer, right from your Mac, like any other printer">
+</p>
+
+<p align="center">
+  <b>English</b> · <a href="README.ru.md">Русский</a>
 </p>
 
 <p align="center">
@@ -7,143 +11,147 @@
   <img src="https://img.shields.io/badge/Swift-5.10%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.10+">
   <img src="https://img.shields.io/badge/UI-SwiftUI-0A84FF" alt="SwiftUI">
   <img src="https://img.shields.io/badge/Bluetooth-LE-0082FC?logo=bluetooth&logoColor=white" alt="Bluetooth LE">
-  <img src="https://img.shields.io/badge/paper-57%20mm-F2609A" alt="Лента 57 мм">
-  <img src="https://img.shields.io/badge/tests-29%20passing-34C759" alt="29 тестов">
+  <img src="https://img.shields.io/badge/paper-57%20mm-F2609A" alt="57 mm paper">
+  <img src="https://img.shields.io/badge/languages-6-FF8A5B" alt="6 languages">
+  <img src="https://img.shields.io/badge/tests-30%20passing-34C759" alt="30 tests passing">
 </p>
 
 <p align="center">
-  <a href="#что-умеет">Что умеет</a> ·
-  <a href="#установка">Установка</a> ·
-  <a href="#как-это-устроено">Как устроено</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#install">Install</a> ·
+  <a href="#how-it-works">How it works</a> ·
   <a href="#cli">CLI</a> ·
-  <a href="#разработка">Разработка</a>
+  <a href="#development">Development</a>
 </p>
 
 <p align="center">
-  <img src="assets/readme/app.webp" width="100%" alt="Окно Tiny Printer в светлой и тёмной теме: режимы слева, лента выходит из принтера в центре, галерея шаблонов открыток справа">
+  <img src="assets/readme/app.webp" width="100%" alt="The Tiny Printer window in light and dark mode: modes on the left, the tape coming out of the printer in the middle, the card template gallery on the right">
 </p>
 
-Дешёвые BLE-термопринтеры на 57 мм (HOMIN, «котики» и их родня) умеют печатать только из своих приложений для телефона. **Tiny Printer** делает из такого принтера обычный принтер для Mac: макет собирается в окне с живым превью ленты, а печатать можно из ⌘P любой программы, из строки меню или из терминала.
+Cheap 57 mm Bluetooth LE thermal printers (HOMIN, the “cat printers” and their relatives) only print from their own phone apps. **Tiny Printer** turns one into a regular Mac printer: lay out a sticker in a window with a live preview of the tape, or print from ⌘P in any app, from the menu bar or from the terminal.
 
-## Что печатает
+## Real prints
 
 <p align="center">
-  <img src="assets/readme/prints.webp" width="100%" alt="Настоящие отпечатки приложения: открытка «Спасибо!», QR-код с подписью, записка «Не забудь покормить кота!», стикер-котик с контуром, надпись «Специи» в рамке и дизеринг иконки приложения">
+  <img src="assets/readme/prints.webp" width="100%" alt="Real output of the app: a “Thanks!” card, a QR code with a caption, a “Don’t forget to feed the cat!” note, a cat sticker with a cut-out outline, a framed “Spices” label and a dithered app icon">
 </p>
 
-<sub>Это не макеты, а настоящий вывод рендера: `tinyprint … --preview out.png`, 1 бит, 203 dpi — ровно то, что уйдёт на принтер.</sub>
+<sub>Not mockups: this is the renderer’s output, `tinyprint … --preview out.png`, 1-bit at 203 dpi, exactly what goes to the printer.</sub>
 
-## Что умеет
+## Features
 
 <p align="center">
-  <img src="assets/readme/modes.svg" width="100%" alt="Четыре режима: Открытки ⌘1, Надписи ⌘2, QR-коды ⌘3, Фото ⌘4">
+  <img src="assets/readme/modes.svg" width="100%" alt="Four modes: Cards ⌘1, Labels ⌘2, QR Codes ⌘3, Photo ⌘4">
 </p>
 
-- 🎁 **Открытки** — записки, маленькие открытки и стикеры. 9 шаблонов с живыми превью (записка со «скотчем», список дел, день рождения, спасибо, люблю, Новый год, купон, стикеры), 13 рамок, украшения, каллиграфические шрифты с кириллицей, контур для вырезания стикера, несколько штук подряд.
-- ✨ **AI-картинки** — опишите словами («котик спит на книжке») или перерисуйте своё фото в стикер. Рисует OpenAI (GPT Image) или Google (Gemini / Imagen) по вашему ключу API, стиль подобран под термопечать: контур, гравюра, силуэт, пиксель-арт… После каждой картинки видна её примерная цена, в настройках — сумма за всё время.
-- 🏷️ **Надписи** — наклейки любым шрифтом, в том числе длинные надписи вдоль ленты для корешков папок и проводов.
-- 🔳 **QR-коды** — ссылка, текст или Wi‑Fi, подпись сверху или сбоку.
-- 🖼️ **Фото** — ч/б с растрированием (Аткинсон, Флойд–Стейнберг, Байер), яркость, контраст, гамма, резкость.
-- 🖨️ **Системный принтер «Tiny Printer»** — виден в ⌘P браузера, Preview, Pages и любых других приложений. Размеры 57×20…150 мм и свой.
-- 📋 **Печать из буфера** (⇧⌘P или строка меню): ссылка → QR, текст → наклейка, картинка → фото.
-- 🌗 **Светлая и тёмная тема** — как в системе или вручную: **Вид → Оформление**.
-- 🧪 **Без принтера** — задания сохраняются как PNG, удобно проверять макеты без железа.
+- 🎁 **Cards**: notes, little greeting cards and stickers. 9 templates with live previews (taped note, to-do list, birthday, thanks, love, New Year, coupon, stickers), 13 frames, decorations, calligraphy fonts, a cut-out outline for stickers, several copies in a row.
+- ✨ **AI pictures**: describe a picture in words (“a kitten asleep on a book”) or redraw your photo as a sticker. Drawn by OpenAI (GPT Image) or Google (Gemini / Imagen) with your own API key, in styles that suit thermal paper: outline, woodcut, silhouette, pixel art… Every picture shows its estimated cost, and Settings keep a running total.
+- 🏷️ **Labels**: stickers in any font, including long labels that run along the tape for folder spines and cables.
+- 🔳 **QR codes**: a link, text or Wi‑Fi network, with a caption on top or to the side.
+- 🖼️ **Photos**: black-and-white with dithering (Atkinson, Floyd–Steinberg, Bayer), brightness, contrast, gamma and sharpness.
+- 🖨️ **“Tiny Printer” system printer**: shows up in ⌘P of Safari, Preview, Pages and any other app. Paper sizes 57×20…150 mm plus custom.
+- 📋 **Print the clipboard** (⇧⌘P or the menu bar): a link becomes a QR code, text becomes a label, an image becomes a photo.
+- 🌍 **Six languages**: English, Русский, Deutsch, Español, Français and 简体中文. The app follows the macOS language; pick one per app in System Settings → General → Language & Region.
+- 🌗 **Light and dark mode**: follows the system or set it by hand in **View → Appearance**.
+- 🧪 **No printer needed**: jobs can be saved as PNG files, handy for checking layouts without hardware.
 
-### Окно
+### The window
 
-| Где | Что там |
+| Where | What’s there |
 |---|---|
-| Слева | Режимы (⌘1…⌘4) и карточка принтера: состояние, заряд, подключение, тестовая печать |
-| В центре | Лента выходит из щели принтера; масштаб «Вписать» или 50…300 %, картинки можно перетащить прямо на ленту; внизу — бумага (стикер / чек) и число копий |
-| Справа | Настройки макета (⌃⌘I — скрыть). У открыток четыре вкладки: Шаблоны, Картинка, Текст, Вид |
-| Наверху | **Печать** (⌘P) |
+| Left | Modes (⌘1…⌘4) and the printer card: status, battery, connection, test print |
+| Middle | The tape comes out of the printer slot; zoom “Fit” or 50…300 %, drop pictures right onto the tape; paper (sticker / receipt) and number of copies at the bottom |
+| Right | Layout settings (⌃⌘I to hide). Cards have four tabs: Templates, Picture, Text, Design |
+| Top | **Print** (⌘P) |
 
-## Установка
+## Install
 
-Нужны macOS 14+ и Xcode или Command Line Tools (`xcode-select --install`).
+You need macOS 14+ and Xcode or the Command Line Tools (`xcode-select --install`).
 
 ```bash
-gh repo clone RemDee13/Tiny-Printer && cd Tiny-Printer
-scripts/build-app.sh --install     # → /Applications/TinyPrinter.app и ~/.local/bin/tinyprint
+git clone https://github.com/RemDee13/Tiny-Printer.git && cd Tiny-Printer
+scripts/build-app.sh --install     # → /Applications/TinyPrinter.app and ~/.local/bin/tinyprint
 ```
 
-Потом **Настройки (⌘,)**:
+Then open **Settings (⌘,)**:
 
-1. **Принтер → Куда печатать:** «Bluetooth-принтер».
-2. Включить принтер, **отключить его от телефона** (BLE-принтер держит одно подключение) и нажать **Подключить** — здесь или в карточке принтера внизу слева.
-3. **Основные → Печать из других приложений → Добавить** — в системе появится принтер «Tiny Printer» (без пароля, только для этого Mac).
-4. Для AI-картинок: **AI** → вставить свой ключ OpenAI или Google.
+1. **Printer → Print to:** “Bluetooth printer”.
+2. Turn the printer on, **disconnect it from your phone** (a BLE printer keeps a single connection) and click **Connect**, here or on the printer card at the bottom left.
+3. **General → Printing from Other Apps → Add**: macOS gets a “Tiny Printer” printer (no password, this Mac only).
+4. For AI pictures: **AI** → paste your OpenAI or Google key.
 
-Вкладки настроек: **Принтер** (подключение, устройства рядом, протокол), **Основные** (оформление, бумага, плотность, системный принтер, документы), **AI** (ключ, модель, расходы), **Журнал** (задания и обмен по Bluetooth).
+Settings tabs: **Printer** (connection, nearby devices, protocol), **General** (appearance, paper, density, system printer, documents), **AI** (key, model, spending), **Log** (jobs and the Bluetooth exchange).
 
-## Как это устроено
+## How it works
 
 <p align="center">
-  <img src="assets/readme/how-it-works.svg" width="100%" alt="Задания приходят из окна приложения, из ⌘P любого приложения, из строки меню и из терминала; Tiny Printer переводит их в 1 бит 203 dpi и отправляет на термопринтер по Bluetooth LE или сохраняет PNG">
+  <img src="assets/readme/how-it-works.svg" width="100%" alt="Jobs come from the app window, from ⌘P in any app, from the menu bar and from the terminal; Tiny Printer turns them into 1-bit 203 dpi images and sends them to the thermal printer over Bluetooth LE or saves PNG files">
 </p>
 
 ```
-Любое приложение ⌘P → CUPS → ipp://localhost:8613 (ippeveprinter из macOS)
+Any app ⌘P → CUPS → ipp://localhost:8613 (ippeveprinter from macOS)
    → ipp-handler.sh → POST http://127.0.0.1:8614/print (PDF) → Tiny Printer.app
-   → рендер 203 dpi → 1 бит (порог или дизеринг) → драйвер → Bluetooth LE
+   → render at 203 dpi → 1 bit (threshold or dithering) → driver → Bluetooth LE
 ```
 
-- Драйвера для BLE-принтеров в macOS нет, поэтому приложение запускает встроенный в macOS `ippeveprinter` (эмулятор IPP Everywhere) только на `localhost`, без анонса в сети. CUPS отдаёт ему PDF нужного размера.
-- Bluetooth держит только приложение (у него своё разрешение macOS); CLI и системная печать ходят к нему через локальный API на `127.0.0.1:8614`.
-- Если приложение закрыто, задания ждут в очереди macOS.
+- macOS has no driver for BLE printers, so the app runs `ippeveprinter`, the IPP Everywhere emulator that ships with macOS, on `localhost` only and without announcing it on the network. CUPS hands it a PDF of the right size.
+- Only the app holds the Bluetooth connection (it has its own macOS permission); the CLI and system printing talk to it through a local API on `127.0.0.1:8614`.
+- If the app is closed, jobs wait in the macOS print queue.
 
-### Протоколы
+### Protocols
 
-Определяются автоматически по имени устройства, а если имя ничего не говорит — по ответу на безопасный запрос состояния (бумага не двигается). Протокол можно задать вручную: **Принтер → Протокол**.
+Detected automatically from the device name, or, when the name says nothing, from the reply to a harmless status request (the paper doesn’t move). You can also pick the protocol by hand: **Printer → Protocol**.
 
-| Семейство | Приложение производителя | GATT | Статус |
+| Family | Vendor app | GATT | Status |
 |---|---|---|---|
-| Cat printer `51 78` (GB0x, GT0x, MX0x, X6h, YT01…) | Tiny Print, iPrint | AE30 / AE01 / AE02 | байты сверены с захватами |
-| MXW01 / V5X `22 21` | Fun Print, iBleem | AE30 / AE01 / AE03 | реализован |
-| Phomemo M02 / T02 | Phomemo | FF00 / FF02 | реализован |
-| Luck Jingle `10 FF` | Luck Jingle | FF00 / FF02 | реализован |
-| ESC/POS (18F0, ISSC, Gprinter; YHK) | разные | — | реализован |
+| Cat printer `51 78` (GB0x, GT0x, MX0x, X6h, YT01…) | Tiny Print, iPrint | AE30 / AE01 / AE02 | bytes checked against captures |
+| MXW01 / V5X `22 21` | Fun Print, iBleem | AE30 / AE01 / AE03 | implemented |
+| Phomemo M02 / T02 | Phomemo | FF00 / FF02 | implemented |
+| Luck Jingle `10 FF` | Luck Jingle | FF00 / FF02 | implemented |
+| ESC/POS (18F0, ISSC, Gprinter; YHK) | various | — | implemented |
 
 > [!WARNING]
-> Драйверы написаны по исходникам открытых проектов (NaitLee/Cat-Printer, rbaron/catprinter, TiMini-Print, MXW01-catprinter, phomemo-tools и др.) и **ещё не проверены на живом принтере**. Первый запуск с устройством: Настройки → Принтер → Подключить → Тестовая печать. Если что-то не так — Настройки → Журнал → «Скопировать» (там GATT-профиль и обмен).
+> The drivers follow the sources of open projects (NaitLee/Cat-Printer, rbaron/catprinter, TiMini-Print, MXW01-catprinter, phomemo-tools and others) and **have not been tested on a real printer yet**. First run with a device: Settings → Printer → Connect → Test Print. If something is off, use Settings → Log → “Copy” (it has the GATT profile and the exchange).
 
-### Приватность
+### Privacy
 
-- Ключи API хранятся только в Связке ключей macOS — не в настройках, не в файлах и не в этом репозитории.
-- Запросы к AI идут напрямую в OpenAI или Google; других сетевых запросов приложение не делает.
-- Обе локальные службы (IPP и API) слушают только `127.0.0.1` / `::1` — из сети к ним не подключиться.
-- Картинки AI и журнал расходов лежат в `~/Library/Application Support/TinyPrinter/`.
+- API keys live only in the macOS Keychain: not in preferences, not in files, not in this repository.
+- AI requests go straight to OpenAI or Google; the app makes no other network requests.
+- Both local services (IPP and the API) listen only on `127.0.0.1` / `::1`, so nothing on the network can reach them.
+- AI pictures and the spending log are kept in `~/Library/Application Support/TinyPrinter/`.
 
 ## CLI
 
 ```bash
 tinyprint status
-tinyprint log                                      # журнал и GATT-профиль подключённого принтера
-tinyprint text "Специи" --along                    # надпись вдоль ленты на всю ширину
-tinyprint text "Верхняя полка\nкрупы" --size 20
-tinyprint qr "https://example.com" --caption "Сайт" --side --length 30
+tinyprint log                                      # log and GATT profile of the connected printer
+tinyprint text "Spices" --along                    # a label along the tape, full width
+tinyprint text "Top shelf\ncereal" --size 20
+tinyprint qr "https://example.com" --caption "Website" --side --length 30
 tinyprint image photo.jpg --dither atkinson --rotate
 tinyprint file doc.pdf --mode text --trim
-tinyprint card --preset birthday --image torte.png  # открытка по шаблону; tinyprint card --list — все шаблоны
+tinyprint card --preset birthday --image cake.png  # a card from a template; tinyprint card --list shows them all
 tinyprint card --preset sticker --image cat.png --repeat 3
 ```
 
-Любая команда с `--preview out.png` сохраняет картинку вместо печати и работает без запущенного приложения.
+Add `--preview out.png` to any command to save the picture instead of printing; it works without the app running. The CLI speaks the same language as the app.
 
-## Разработка
+## Development
 
 ```bash
-swift build && swift test          # 29 тестов: протоколы, QR, PDF, открытки и контур стикера, запросы к OpenAI/Gemini
-scripts/build-app.sh               # build/TinyPrinter.app (подпись Apple Development, чтобы macOS помнила доступ к Bluetooth)
-swift scripts/make-icon.swift Resources/AppIcon-1024.png   # иконка (потом iconutil → Resources/AppIcon.icns)
+swift build && swift test          # 30 tests: protocols, QR, PDF, cards and sticker outline, OpenAI/Gemini requests, translations
+scripts/build-app.sh               # build/TinyPrinter.app (Apple Development signing, so macOS remembers the Bluetooth permission)
+scripts/check-localization.sh      # UI strings in the code that have no translation yet
+swift scripts/make-icon.swift Resources/AppIcon-1024.png   # the icon (then iconutil → Resources/AppIcon.icns)
 ```
 
-| Папка | Что внутри |
+| Folder | What’s inside |
 |---|---|
-| `Sources/TinyPrinterKit` | Рендер, дизеринг, открытки, AI-клиент, драйверы, BLE-транспорт |
-| `Sources/TinyPrinterApp` | SwiftUI-приложение, локальный API, системный принтер |
+| `Sources/TinyPrinterKit` | Rendering, dithering, cards, AI client, drivers, BLE transport |
+| `Sources/TinyPrinterApp` | The SwiftUI app, local API, system printer |
 | `Sources/tinyprint` | CLI |
-| `Tests/TinyPrinterKitTests` | Тесты протоколов, рендера и открыток |
-| `assets/readme` | Картинки этого README |
+| `Resources/Localization` | Translations: `<lang>.lproj/Localizable.strings`, keyed by the Russian source strings |
+| `Tests/TinyPrinterKitTests` | Tests for protocols, rendering, cards and translations |
+| `assets/readme` | Pictures for this README |
 
-Удалить системный принтер: **Настройки → Основные → «Убрать»** (или `lpadmin -x Tiny_Printer`).
+To remove the system printer: **Settings → General → “Remove”** (or `lpadmin -x Tiny_Printer`).

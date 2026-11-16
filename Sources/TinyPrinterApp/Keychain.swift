@@ -26,7 +26,7 @@ enum Keychain {
         if status == errSecItemNotFound {
             var add = query(account)
             add[kSecValueData as String] = data
-            add[kSecAttrLabel as String] = "Tiny Printer: ключ API \(account)"
+            add[kSecAttrLabel as String] = String(localized: "Tiny Printer: ключ API \(account)")
             let s = SecItemAdd(add as CFDictionary, nil)
             guard s == errSecSuccess else { throw KeychainError(status: s) }
         } else if status != errSecSuccess {
@@ -41,7 +41,7 @@ enum Keychain {
     struct KeychainError: LocalizedError {
         let status: OSStatus
         var errorDescription: String? {
-            "Связка ключей: " + ((SecCopyErrorMessageString(status, nil) as String?) ?? "код \(status)")
+            String(localized: "Связка ключей: ") + ((SecCopyErrorMessageString(status, nil) as String?) ?? String(localized: "код \(status)"))
         }
     }
 }

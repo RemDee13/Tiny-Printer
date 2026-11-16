@@ -49,10 +49,10 @@ struct ContentView: View {
     }
 
     private var sizeLine: String {
-        guard let bm = model.preview, bm.height > 0, bm.blackRatio > 0 else { return "57 мм" }
+        guard let bm = model.preview, bm.height > 0, bm.blackRatio > 0 else { return String(localized: "57 мм") }
         let mm = Int(Units.mm(dots: bm.height).rounded())
-        let total = model.copies > 1 ? " · \(model.copies) шт. = \(mm * model.copies) мм" : ""
-        return "57 × \(mm) мм" + total
+        let total = model.copies > 1 ? String(localized: " · \(model.copies) шт. = \(mm * model.copies) мм") : ""
+        return String(localized: "57 × \(mm) мм") + total
     }
 }
 
@@ -86,8 +86,8 @@ struct PrintButton: View {
 
     private var title: String {
         if case .printing(let p) = model.printer.state { return "\(Int(p * 100))%" }
-        if model.busy { return "Печать…" }
-        return model.copies > 1 ? "Печать × \(model.copies)" : "Печать"
+        if model.busy { return String(localized: "Печать…") }
+        return model.copies > 1 ? String(localized: "Печать × \(model.copies)") : String(localized: "Печать")
     }
 }
 

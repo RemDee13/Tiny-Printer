@@ -108,7 +108,7 @@ public enum AIAspect: String, Codable, CaseIterable, Identifiable {
     case square, portrait, landscape
     public var id: String { rawValue }
     public var title: String {
-        switch self { case .square: return "Квадрат"; case .portrait: return "Вертикально"; case .landscape: return "Горизонтально" }
+        switch self { case .square: return String(localized: "Квадрат", bundle: .tinyPrinter); case .portrait: return String(localized: "Вертикально", bundle: .tinyPrinter); case .landscape: return String(localized: "Горизонтально", bundle: .tinyPrinter) }
     }
     var openAISize: String {
         switch self { case .square: return "1024x1024"; case .portrait: return "1024x1536"; case .landscape: return "1536x1024" }
@@ -122,7 +122,7 @@ public enum AIQuality: String, Codable, CaseIterable, Identifiable {
     case low, medium, high
     public var id: String { rawValue }
     public var title: String {
-        switch self { case .low: return "Быстро и дёшево"; case .medium: return "Средне"; case .high: return "Максимум" }
+        switch self { case .low: return String(localized: "Быстро и дёшево", bundle: .tinyPrinter); case .medium: return String(localized: "Средне", bundle: .tinyPrinter); case .high: return String(localized: "Максимум", bundle: .tinyPrinter) }
     }
 }
 
@@ -132,14 +132,14 @@ public enum AIStyle: String, Codable, CaseIterable, Identifiable {
     public var id: String { rawValue }
     public var title: String {
         switch self {
-        case .lineArt: return "Контурный рисунок"
-        case .cute: return "Милый стикер"
-        case .doodle: return "Дудл от руки"
-        case .woodcut: return "Гравюра"
-        case .silhouette: return "Силуэт"
-        case .tattoo: return "Тату-флеш"
-        case .pixel: return "Пиксель-арт"
-        case .photo: return "Как есть (фото, растр)"
+        case .lineArt: return String(localized: "Контурный рисунок", bundle: .tinyPrinter)
+        case .cute: return String(localized: "Милый стикер", bundle: .tinyPrinter)
+        case .doodle: return String(localized: "Дудл от руки", bundle: .tinyPrinter)
+        case .woodcut: return String(localized: "Гравюра", bundle: .tinyPrinter)
+        case .silhouette: return String(localized: "Силуэт", bundle: .tinyPrinter)
+        case .tattoo: return String(localized: "Тату-флеш", bundle: .tinyPrinter)
+        case .pixel: return String(localized: "Пиксель-арт", bundle: .tinyPrinter)
+        case .photo: return String(localized: "Как есть (фото, растр)", bundle: .tinyPrinter)
         }
     }
     var prompt: String {
@@ -207,18 +207,18 @@ public enum AIImageError: LocalizedError, Equatable {
 
     public var errorDescription: String? {
         switch self {
-        case .noKey(let p): return "Нет ключа API \(p.shortTitle). Добавьте его в настройках (⌘,)."
-        case .emptyPrompt: return "Опишите, что нарисовать."
+        case .noKey(let p): return String(localized: "Нет ключа API \(p.shortTitle). Добавьте его в настройках (⌘,).", bundle: .tinyPrinter)
+        case .emptyPrompt: return String(localized: "Опишите, что нарисовать.", bundle: .tinyPrinter)
         case .http(let code, let msg):
             switch code {
-            case 401, 403: return "Ключ не подошёл (\(code)): \(msg)"
-            case 404: return "Модель не найдена (\(code)): \(msg). Обновите список моделей в настройках."
-            case 429: return "Лимит запросов или закончились средства на счёте (\(code)): \(msg)"
-            default: return "Ошибка сервиса (\(code)): \(msg)"
+            case 401, 403: return String(localized: "Ключ не подошёл (\(code)): \(msg)", bundle: .tinyPrinter)
+            case 404: return String(localized: "Модель не найдена (\(code)): \(msg). Обновите список моделей в настройках.", bundle: .tinyPrinter)
+            case 429: return String(localized: "Лимит запросов или закончились средства на счёте (\(code)): \(msg)", bundle: .tinyPrinter)
+            default: return String(localized: "Ошибка сервиса (\(code)): \(msg)", bundle: .tinyPrinter)
             }
-        case .noImage(let text): return "Модель не вернула картинку" + (text.isEmpty ? "." : ": \(text)")
-        case .badResponse: return "Непонятный ответ сервиса."
-        case .referenceUnsupported: return "Модели Imagen не умеют перерисовывать картинку — выберите модель Gemini."
+        case .noImage(let text): return String(localized: "Модель не вернула картинку", bundle: .tinyPrinter) + (text.isEmpty ? "." : ": \(text)")
+        case .badResponse: return String(localized: "Непонятный ответ сервиса.", bundle: .tinyPrinter)
+        case .referenceUnsupported: return String(localized: "Модели Imagen не умеют перерисовывать картинку — выберите модель Gemini.", bundle: .tinyPrinter)
         }
     }
 }
@@ -417,7 +417,7 @@ public struct AIImageClient {
                 if texts.isEmpty, let reason = cand["finishReason"] as? String, reason != "STOP" { texts.append(reason) }
             }
             if let fb = obj["promptFeedback"] as? [String: Any], let reason = fb["blockReason"] as? String {
-                texts.append("запрос заблокирован (\(reason))")
+                texts.append(String(localized: "запрос заблокирован (\(reason))", bundle: .tinyPrinter))
             }
             throw AIImageError.noImage(texts.joined(separator: " ").trimmingCharacters(in: .whitespacesAndNewlines))
         }

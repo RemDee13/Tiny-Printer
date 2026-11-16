@@ -58,12 +58,12 @@ public final class MXW01Driver: PrinterDriver {
         return [
             .send(Data(Self.frame(0xA2, [level])), .command),
             .send(Data(Self.frame(0xA1, [0x00])), .command),
-            .maybeWait(label: "статус MXW01", timeout: 2) { Self.isFrame($0, 0xA1) },
+            .maybeWait(label: String(localized: "статус MXW01", bundle: .tinyPrinter), timeout: 2) { Self.isFrame($0, 0xA1) },
             .send(Data(Self.frame(0xA9, le16(lines) + [0x30, 0x00])), .command),
-            .wait(label: "разрешение печати", timeout: 4) { Self.isFrame($0, 0xA9) },
+            .wait(label: String(localized: "разрешение печати", bundle: .tinyPrinter), timeout: 4) { Self.isFrame($0, 0xA9) },
             .send(Data(raster), .data),
             .send(Data(Self.frame(0xAD, [0x00])), .command),
-            .wait(label: "окончание печати", timeout: 15 + Double(lines) / 60) { Self.isFrame($0, 0xAA) },
+            .wait(label: String(localized: "окончание печати", bundle: .tinyPrinter), timeout: 15 + Double(lines) / 60) { Self.isFrame($0, 0xAA) },
         ]
     }
 
