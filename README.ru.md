@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/badge/paper-57%20mm-F2609A" alt="Лента 57 мм">
   <img src="https://img.shields.io/badge/languages-6-FF8A5B" alt="6 языков">
   <img src="https://img.shields.io/badge/tests-30%20passing-34C759" alt="30 тестов">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-8E8E93" alt="Лицензия MIT"></a>
 </p>
 
 <p align="center">
@@ -51,7 +52,7 @@
 - 🖼️ **Фото** — ч/б с растрированием (Аткинсон, Флойд–Стейнберг, Байер), яркость, контраст, гамма, резкость.
 - 🖨️ **Системный принтер «Tiny Printer»** — виден в ⌘P браузера, Preview, Pages и любых других приложений. Размеры 57×20…150 мм и свой.
 - 📋 **Печать из буфера** (⇧⌘P или строка меню): ссылка → QR, текст → наклейка, картинка → фото.
-- 🌍 **Шесть языков**: русский, English, Deutsch, Español, Français и 简体中文. Приложение говорит на языке macOS; свой язык для приложения — в Системных настройках → Основные → Язык и регион.
+- 🌍 **Шесть языков**: русский, English, Deutsch, Español, Français и 简体中文. Приложение говорит на языке macOS, или выберите язык в **Настройках → Основные → Язык**.
 - 🌗 **Светлая и тёмная тема** — как в системе или вручную: **Вид → Оформление**.
 - 🧪 **Без принтера** — задания сохраняются как PNG, удобно проверять макеты без железа.
 
@@ -80,7 +81,7 @@ scripts/build-app.sh --install     # → /Applications/TinyPrinter.app и ~/.loc
 3. **Основные → Печать из других приложений → Добавить** — в системе появится принтер «Tiny Printer» (без пароля, только для этого Mac).
 4. Для AI-картинок: **AI** → вставить свой ключ OpenAI или Google.
 
-Вкладки настроек: **Принтер** (подключение, устройства рядом, протокол), **Основные** (оформление, бумага, плотность, системный принтер, документы), **AI** (ключ, модель, расходы), **Журнал** (задания и обмен по Bluetooth).
+Вкладки настроек: **Принтер** (подключение, устройства рядом, протокол), **Основные** (оформление, язык, бумага, плотность, системный принтер, документы), **AI** (ключ, модель, расходы), **Журнал** (задания и обмен по Bluetooth).
 
 ## Как это устроено
 
@@ -155,3 +156,11 @@ swift scripts/make-icon.swift Resources/AppIcon-1024.png   # иконка (по�
 | `assets/readme` | Картинки этого README |
 
 Удалить системный принтер: **Настройки → Основные → «Убрать»** (или `lpadmin -x Tiny_Printer`).
+
+## Благодарности
+
+Протоколы принтеров разобрали авторы [NaitLee/Cat-Printer](https://github.com/NaitLee/Cat-Printer), [rbaron/catprinter](https://github.com/rbaron/catprinter), [Dejniel/TiMini-Print](https://github.com/Dejniel/TiMini-Print), [jeremy46231/MXW01-catprinter](https://github.com/jeremy46231/MXW01-catprinter), [MaikelChan/CatPrinterBLE](https://github.com/MaikelChan/CatPrinterBLE), [velikodniy/meowprint](https://github.com/velikodniy/meowprint), [vivier/phomemo-tools](https://github.com/vivier/phomemo-tools) и статья WerWolv. Tiny Printer — самостоятельная реализация на Swift того, что они описали.
+
+## Лицензия
+
+[MIT](LICENSE)

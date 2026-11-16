@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/badge/paper-57%20mm-F2609A" alt="57 mm paper">
   <img src="https://img.shields.io/badge/languages-6-FF8A5B" alt="6 languages">
   <img src="https://img.shields.io/badge/tests-30%20passing-34C759" alt="30 tests passing">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-8E8E93" alt="MIT license"></a>
 </p>
 
 <p align="center">
@@ -51,7 +52,7 @@ Cheap 57 mm Bluetooth LE thermal printers (HOMIN, the “cat printers” and the
 - 🖼️ **Photos**: black-and-white with dithering (Atkinson, Floyd–Steinberg, Bayer), brightness, contrast, gamma and sharpness.
 - 🖨️ **“Tiny Printer” system printer**: shows up in ⌘P of Safari, Preview, Pages and any other app. Paper sizes 57×20…150 mm plus custom.
 - 📋 **Print the clipboard** (⇧⌘P or the menu bar): a link becomes a QR code, text becomes a label, an image becomes a photo.
-- 🌍 **Six languages**: English, Русский, Deutsch, Español, Français and 简体中文. The app follows the macOS language; pick one per app in System Settings → General → Language & Region.
+- 🌍 **Six languages**: English, Русский, Deutsch, Español, Français and 简体中文. The app follows the macOS language, or pick one in **Settings → General → Language**.
 - 🌗 **Light and dark mode**: follows the system or set it by hand in **View → Appearance**.
 - 🧪 **No printer needed**: jobs can be saved as PNG files, handy for checking layouts without hardware.
 
@@ -80,7 +81,7 @@ Then open **Settings (⌘,)**:
 3. **General → Printing from Other Apps → Add**: macOS gets a “Tiny Printer” printer (no password, this Mac only).
 4. For AI pictures: **AI** → paste your OpenAI or Google key.
 
-Settings tabs: **Printer** (connection, nearby devices, protocol), **General** (appearance, paper, density, system printer, documents), **AI** (key, model, spending), **Log** (jobs and the Bluetooth exchange).
+Settings tabs: **Printer** (connection, nearby devices, protocol), **General** (appearance, language, paper, density, system printer, documents), **AI** (key, model, spending), **Log** (jobs and the Bluetooth exchange).
 
 ## How it works
 
@@ -155,3 +156,11 @@ swift scripts/make-icon.swift Resources/AppIcon-1024.png   # the icon (then icon
 | `assets/readme` | Pictures for this README |
 
 To remove the system printer: **Settings → General → “Remove”** (or `lpadmin -x Tiny_Printer`).
+
+## Acknowledgements
+
+The printer protocols were worked out by the people behind [NaitLee/Cat-Printer](https://github.com/NaitLee/Cat-Printer), [rbaron/catprinter](https://github.com/rbaron/catprinter), [Dejniel/TiMini-Print](https://github.com/Dejniel/TiMini-Print), [jeremy46231/MXW01-catprinter](https://github.com/jeremy46231/MXW01-catprinter), [MaikelChan/CatPrinterBLE](https://github.com/MaikelChan/CatPrinterBLE), [velikodniy/meowprint](https://github.com/velikodniy/meowprint), [vivier/phomemo-tools](https://github.com/vivier/phomemo-tools) and WerWolv’s write-up. Tiny Printer is an independent Swift implementation of what they documented.
+
+## License
+
+[MIT](LICENSE)

@@ -79,6 +79,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         MainActor.assumeIsolated {
             AppAppearance.stored.apply()
+            _ = AppLanguage.atLaunch
             AppModel.shared.start()
         }
     }

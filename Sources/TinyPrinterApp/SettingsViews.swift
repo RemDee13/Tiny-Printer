@@ -151,6 +151,7 @@ struct PrinterSettingsPane: View {
 struct PrintingSettingsPane: View {
     @EnvironmentObject var model: AppModel
     @AppStorage(AppAppearance.storageKey) private var appearance: AppAppearance = .system
+    @State private var language = AppLanguage.stored
 
     var body: some View {
         Form {
@@ -160,6 +161,20 @@ struct PrintingSettingsPane: View {
                         ForEach(AppAppearance.allCases) { a in
                             AppearanceTile(appearance: a, selected: appearance == a) { appearance = a }
                         }
+                    }
+                }
+                Picker("Язык", selection: Binding(get: { language }, set: { language = $0; $0.save() })) {
+                    Text(AppLanguage.system.title).tag(AppLanguage.system)
+                    Divider()
+                    ForEach(AppLanguage.allCases.filter { $0 != .system }) { Text($0.title).tag($0) }
+                }
+                if language != AppLanguage.atLaunch {
+                    HStack {
+                        Label("Язык сменится после перезапуска приложения.", systemImage: "arrow.clockwise")
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Перезапустить") { AppLanguage.relaunch() }
+                            .buttonStyle(.borderedProminent)
                     }
                 }
                 Toggle("Запускать при входе в систему", isOn: Binding(get: { model.launchAtLogin }, set: { model.setLaunchAtLogin($0) }))

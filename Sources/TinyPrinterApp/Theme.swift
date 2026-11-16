@@ -222,3 +222,56 @@ enum AppAppearance: String, CaseIterable, Identifiable {
 
     @MainActor func apply() { NSApp.appearance = nsAppearance }
 }
+
+// MARK: - Language
+
+/// UI language of the app. `.system` follows macOS; any other choice is saved as this app's own
+/// `AppleLanguages` (what System Settings → Language & Region → Applications does) and applies after a restart.
+enum AppLanguage: String, CaseIterable, Identifiable {
+    case system = "", en, ru, de, es, fr, zhHans = "zh-Hans"
+    var id: String { rawValue }
+
+    /// Every language in its own name, so the list can be read whatever the current language is.
+    var title: String {
+        switch self {
+        case .system: return String(localized: "Как в системе")
+        case .en: return "English"
+        case .ru: return "Русский"
+        case .de: return "Deutsch"
+        case .es: return "Español"
+        case .fr: return "Français"
+        case .zhHans: return "简体中文"
+        }
+    }
+
+    private static let key = "AppleLanguages"
+
+    /// The choice saved for this app only (not the global macOS list, which `UserDefaults` falls back to).
+    static var stored: AppLanguage {
+        guard let id = Bundle.main.bundleIdentifier,
+              let first = (UserDefaults.standard.persistentDomain(forName: id)?[key] as? [String])?.first
+        else { return .system }
+        return AppLanguage(rawValue: first) ?? .system
+    }
+
+    /// What the running app was started with; differs from `stored` until the restart.
+    static let atLaunch = stored
+
+    func save() {
+        if self == .system {
+            UserDefaults.standard.removeObject(forKey: Self.key)
+        } else {
+            UserDefaults.standard.set([rawValue], forKey: Self.key)
+        }
+    }
+
+    /// Quits and opens the app again once this process is gone (the local ports must be free first).
+    @MainActor static func relaunch() {
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: "/bin/sh")
+        p.arguments = ["-c", "while kill -0 \(ProcessInfo.processInfo.processIdentifier) 2>/dev/null; do sleep 0.2; done; /usr/bin/open \"$0\"",
+                       Bundle.main.bundlePath]
+        try? p.run()
+        NSApp.terminate(nil)
+    }
+}
